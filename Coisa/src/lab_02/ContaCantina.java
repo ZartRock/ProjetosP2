@@ -15,6 +15,12 @@ public class ContaCantina {
 	private int qtnItensConsumidos;
 	private ArrayList<String> detalhesLanches;
 	
+	
+	 /**
+	   * Constrói uma Conta da Cantina a partir do nome do estabelecimento.
+	   * 
+	   * @param nome string representando o nome
+	 */
 	public ContaCantina(String nome) {
 		this.setNomeCantina(nome);
 		this.detalhesLanches = new ArrayList<String>();

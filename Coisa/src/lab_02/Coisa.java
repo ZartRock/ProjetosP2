@@ -11,12 +11,11 @@ import java.util.Scanner;
 
 public class Coisa {
 
-    private static Scanner input;
+	private static Scanner input;
+
 
 	public static void main(String[] args) {
     	input = new Scanner(System.in);
-    	
-    	
     	
     	int x = 1;
         do {

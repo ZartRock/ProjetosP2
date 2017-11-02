@@ -15,46 +15,53 @@ public class Disciplina {
 	private int[] pesos;
 	private ArrayList<Double> notas;
 	
-	public Disciplina(String nomeDisciplina) {
-		this.setNomeDisciplina(nomeDisciplina);
-		this.notas = new ArrayList<Double>(4);	
-		this.pesos = new int[4];
-		for (int i = 0; i < pesos.length; i++) {
-			pesos[i] = 1;
-		}
-		
-	}
-	
-	public Disciplina(String nomeDisciplina, int numNotas){
-		this.setNomeDisciplina(nomeDisciplina);
-		this.notas = new ArrayList<Double>(numNotas);
-		this.pesos = new int[numNotas];
-		for (int i = 0; i < pesos.length; i++) {
-			pesos[i] = 1;
-		}
-	}
-	
-	
+	/**
+	   * Constrói uma Disciplina a partir do nome, número de notas, pesos
+	   * de uma disciplina.
+	   * 
+	   * @param nomeDisciplina representando o nome.
+	   * @param numNotas representando o número de notas.
+	   * @param pesos representando a quantidade de pesos.
+	 */
 	public Disciplina(String nomeDisciplina, int numNotas, int[] pesos){
 		this.setNomeDisciplina(nomeDisciplina);
 		this.notas = new ArrayList<Double>(numNotas);
 		this.pesos = pesos;
-		System.out.println(this.pesos);
+	}
+	
+	/**
+	   * Constrói uma Disciplina a partir do nome, número de notas
+	   * de uma disciplina.
+	   * 
+	   * @param nomeDisciplina representando o nome.
+	   * @param numNotas representando o número de notas.
+	   *
+	 */
+	public Disciplina(String nomeDisciplina, int numNotas){
+		this(nomeDisciplina, numNotas, new int[numNotas]);
+		
 		for (int i = 0; i < pesos.length; i++) {
-			System.out.println(pesos[i]);;
-		}
+			this.pesos[i] = 1;
+		}		
+	}
+	
+	/**
+	   * Constrói uma Disciplina a partir do nome de uma disciplina
+	   * 
+	   * @param nomeDisciplina representando o nome.
+	 */
+	public Disciplina(String nomeDisciplina) {
+		this(nomeDisciplina, 4, new int[] {1,1,1,1});	
 	}
 	
 	
 	public void cadastraHoras(int horas) {
-		this.horasEstudo += horas;
-		
+		this.horasEstudo += horas;	
 	}
 
 	public void cadastraNota(int num_nota, double nota) {
 		num_nota -= 1;
-		this.notas.add(num_nota, nota);
-		
+		this.notas.add(num_nota, nota);	
 	}
 
 	public boolean aprovado() {
@@ -66,6 +73,7 @@ public class Disciplina {
 		}
 	}
 	
+	@Override
 	public String toString(){
 		int numDisciplinas = notasCadastradas(this.notas);
 		double media = fazerMedia(this.notas, this.pesos);
@@ -123,6 +131,7 @@ public class Disciplina {
 		Disciplina outro = (Disciplina) obj;
 		return this.nomeDisciplina.equals(outro.getNomeDisciplina());
 	}
+	
 }
 
 /*
