@@ -102,7 +102,7 @@ public class ContaCantina {
 	   *Metodo boleano que compara se dois objetos da classe são iguais utilizando como
 	   *paramentro o nome de cada um deles.
 	   *
-	   *@parm obj Object representando um outro objeto da classe disciplina
+	   *@parm Representando outra instancia da classe disciplina
 	   *
 	   *@return um Bolean que representa se os objetos são iguais ou não.
 	 */

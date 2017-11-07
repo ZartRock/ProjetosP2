@@ -50,7 +50,7 @@ public class ContaLaboratorio {
 	   *Metodo que representa atribuir um espaço consumido de armazenamento a uma
 	   *conta do laboratório.
 	   *
-	   *@param Int que representa o espaço consumido a ser registrado na conta.
+	   *@param espacoConsumido Int que representa o espaço ocupado a ser registrado na conta.
 	 */
 	public void consomeEspaco(int espacoConsumido) {
 		this.espacoOcupado += espacoConsumido;
@@ -61,7 +61,7 @@ public class ContaLaboratorio {
 	   *Metodo que representa liberar uma certa quantidade de armazenamento de uma
 	   *conta do laborátorio.
 	   *
-	   *@param Int que representa a quantidade a ser liberada na conta.
+	   *@param qtn Int que representa a quantidade a ser liberada na conta.
 	 */
 	
 	public void liberaEspaco(int qtn) {
@@ -72,7 +72,7 @@ public class ContaLaboratorio {
 
 	
 	/**
-	   *Retorna o nome do laborátorio relacionado com uma conta
+	   *Retorna o nome do laborátorio relacionado com uma conta.
 	   *
 	   *@return String que representa o nome do labotorio de uma conta.
 	 */
@@ -82,9 +82,9 @@ public class ContaLaboratorio {
 	}
 	
 	/**
-	   *Retorna o nome do laborátorio relacionado com uma conta
+	   *Define um nome do laborátorio relacionado com uma conta.
 	   *
-	   *@return String que representa o nome do labotorio de uma conta.
+	   *@parm nomeLaboratorio que representa o novo nome a ser cadastrado.
 	 */
 	
 	public void setNomeLaboratorio(String nomeLaboratorio) {
