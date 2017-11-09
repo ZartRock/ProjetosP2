@@ -1,30 +1,26 @@
 
 public class Contato {
-	private String[] nome = new String[100];
-	private String[] sobrenome = new String[100];
-	private String[] telefone = new String[100];
-	private int posicaoLivre;
+	private String nome;
+	private String sobrenome;
+	private String telefone;
 
-	public Contato(String nome,String sobrenome, String telefone) {
-		this.nome[posicaoLivre] = nome;
-		this.sobrenome[posicaoLivre] = sobrenome;
-		this.telefone[posicaoLivre] = telefone;
+	public Contato(String nome, String sobrenome, String telefone) {
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.telefone = telefone;
 	}
 	
-	public void listarContatos() {
-		for (int i = 0; i < nome.length; i++) {
-			System.out.println(imprimirContato(this.nome[i], this.sobrenome[i], this.telefone[i]));		
-		}
+	public String verContato() {
+		return String.format("%s %s %s", this.nome, this.sobrenome, this.telefone);
 	}
-		
-	public String verContato(int pos) {
-		return imprimirContato(this.nome[pos], this.sobrenome[pos], this.telefone[pos]);
+	
+	public void cadastrarContato(String nome, String sobrenome, String telefone) {
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.telefone = telefone;
 	}
-
-	private String imprimirContato(String nome, String sobrenome, String telefone) {
-		return String.format("%s %s %s", nome, sobrenome, telefone);
-		
-	}
-
+	
+	
+	
 
 }
