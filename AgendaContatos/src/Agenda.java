@@ -7,6 +7,7 @@ public class Agenda {
 	}
 	
 	public void cadastrarContato(String nome, String sobrenome, String telefone, int posicao) {
+		
 		this.contatos[posicao] = new Contato(nome, sobrenome, telefone);
 	
 	}
@@ -20,23 +21,15 @@ public class Agenda {
 		}
 	}
 	
-	public void exibirContato(int posicaoContato) {
+	public void pesquisarContato(int posicaoContato) {
 		if (contatos[posicaoContato] == null ) {
 			System.out.println("POSIÇÃO INVÁLIDA!");
 		} else {
-			System.out.println(contatos[posicaoContato].verContato());
+			System.out.println(contatos[posicaoContato].verDetalhesContato());
 		}
 	}
 	
-	private int novaPosicaoLivre() {
-		for (int i = 0; i < contatos.length; i++) {
-			if(contatos[i] == null) {
-				return i;
-			}
-		}
-		
-		return 100;
-	}
+
 }
 	
 	
