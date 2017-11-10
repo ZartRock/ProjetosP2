@@ -55,7 +55,7 @@ public class AgendaMain {
 		String nome, sobrenome, telefone;
 
 		System.out.print("Posição: ");
-		int posicao = input.nextInt();
+		int posicao = input.nextInt() - 1;
 		input.nextLine();
 
 		System.out.print("Nome: ");
@@ -66,13 +66,20 @@ public class AgendaMain {
 
 		System.out.print("Telefone: ");
 		telefone = input.nextLine();
-
+		if (telefone == null) {
+			System.out.println("Telefone é:" + telefone);
+			System.out.println("A vida mais feliz");
+		}
+		
+		System.out.println("Telefone é:" + telefone);
+		System.out.println("A vida mais feliz");
+		
 		agenda.cadastrarContato(nome, sobrenome, telefone, posicao);
 	}
 	
 	private static void escolherContato(Agenda agenda){
 		System.out.print("Contato>");
-		int posicao = input.nextInt();
+		int posicao = input.nextInt() - 1;
 		input.nextLine();
 
 		agenda.pesquisarContato(posicao);

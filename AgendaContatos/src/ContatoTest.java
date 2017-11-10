@@ -54,10 +54,18 @@ public class ContatoTest {
 	
 	@Test
 	public void verDetalhesTelefoneVazio(){
-		Contato exemplo = new Contato("Killua","Zoldyck",null);
+		// Posso verificar com a inicializacao null tbm
+		
+		Contato exemplo = new Contato("Killua","Zoldyck","");
 		
 		assertEquals("Killua Zoldyck -> Não registado", exemplo.verDetalhesContato());
 	}
 	
+	@Test
+	public void contatosIguais() {
+		Contato a = new Contato("1","1","1");
+		Contato b = new Contato("1","1","1");
+		assertEquals(true, a.equals(b));
+	}
 
 }
