@@ -1,5 +1,19 @@
 import java.util.Scanner;
 
+
+
+/**
+ * Classe principal do projeto por onde o sistema deverá ser inicializado pela JVM.
+ * 
+ * @author Áxel Medeiros
+ */
+/**
+* Representação de um estudante matriculado da UFCG, especificamente de
+* computação. Todo aluno precisa ter uma matrícula e é identificado unicamente
+* por esta matrícula.
+*
+* @author Áxel Medeiros
+*/
 public class AgendaMain {
 
 	private static Scanner input = new Scanner(System.in);;
@@ -9,13 +23,10 @@ public class AgendaMain {
 
 		boolean parar = false;
 		do {
+			exibirMenu();
 			System.out.print("opcao> ");
 			String opcao = input.nextLine();
 			switch (opcao) {
-			case "MENU":
-				exibirMenu();
-				break;
-
 			case "C":
 				cadastrarContato(agenda);
 				break;
@@ -35,12 +46,15 @@ public class AgendaMain {
 			default:
 				System.out.println();
 				System.out.println("OPÇÃO INVÁLIDA!");
-				exibirMenu();
 				break;
 			}
 		} while (parar == false);
 
 	}
+
+	/**
+	 * Exibe o menu do sistema
+	 */
 
 	private static void exibirMenu() {
 		System.out.println();
@@ -51,11 +65,18 @@ public class AgendaMain {
 		System.out.println();
 	}
 
+	/**
+	 * Representa a ação de receber os dados posicao, nome, sobrenome referentes a um contato
+	 * e cadastar na agenda.
+	 * 
+	 * @param agenda
+	 *            representa o objeto instanciado agenda.
+	 */
 	private static void cadastrarContato(Agenda agenda) {
 		String nome, sobrenome, telefone;
 
 		System.out.print("Posição: ");
-		int posicao = input.nextInt() - 1;
+		int posicao = input.nextInt();
 		input.nextLine();
 
 		System.out.print("Nome: ");
@@ -66,22 +87,43 @@ public class AgendaMain {
 
 		System.out.print("Telefone: ");
 		telefone = input.nextLine();
-		if (telefone == null) {
-			System.out.println("Telefone é:" + telefone);
-			System.out.println("A vida mais feliz");
-		}
-		
-		System.out.println("Telefone é:" + telefone);
-		System.out.println("A vida mais feliz");
-		
-		agenda.cadastrarContato(nome, sobrenome, telefone, posicao);
-	}
-	
-	private static void escolherContato(Agenda agenda){
-		System.out.print("Contato>");
-		int posicao = input.nextInt() - 1;
-		input.nextLine();
 
-		agenda.pesquisarContato(posicao);
+		try {
+			boolean Cadastrorealizado = agenda.cadastrarContato(telefone, nome,
+					sobrenome, posicao);
+
+			if (Cadastrorealizado) {
+				System.out.println("CONTATO CADASTRADO!\n");
+			}
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		} catch (UnsupportedOperationException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	/**
+	 * Representa a ação de receber a posicao de um contato e exibi-lo na tela
+	 * 
+	 * @param agenda
+	 *            representa o objeto instanciado agenda.
+	 */
+
+	private static void escolherContato(Agenda agenda) {
+		System.out.print("Contato>");
+		int posicao = input.nextInt();
+		input.nextLine();
+		try {
+			System.out.println(agenda.pesquisarContato(posicao));
+
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

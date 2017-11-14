@@ -12,9 +12,13 @@ public class ContatoTest {
 		contatoBasico = new Contato("Axel", "Medeiros", "(xx) xxxx - xxxx");
 
 	}
-
+	
+	/**
+	 * Realiza testes referente a tentativa de instanciar um objeto Contato com valores nulos
+	 */
+	
 	@Test
-	public void inicializacaoNula() {
+	public void construcaoValoresNulos() {
 		try {
 			Contato a = new Contato(null, "3", "2");
 
@@ -32,35 +36,63 @@ public class ContatoTest {
 		}
 
 		try {
-			Contato a = new Contato(null, null, "2");
+			Contato a = new Contato("Nome", "Sobrenome", null);
 
 			fail("Ambos nulos");
 		} catch (NullPointerException e) {
 			// TODO: handle exception
 		}
 	}
-
+	
+	@Test
+	public void construcaoInformacoesInvaldas(){
+		try {
+			Contato a = new Contato("", "Sobrenome", "(00) 99090-4080");
+		} catch (IllegalArgumentException e) {
+			
+		}
+		
+		try {
+			Contato a = new Contato("Nome", "", "(00) 99090-4080");
+		} catch (IllegalArgumentException e) {
+			
+		}
+		
+		try {
+			Contato a = new Contato("Nome", "Sobrenome", "");
+		} catch (IllegalArgumentException e) {
+			
+		}
+		
+		try {
+			Contato a = new Contato("", "", "");
+		} catch (IllegalArgumentException e) {
+			
+		}
+		
+		
+		
+	}
+	/**
+	 * Realiza a verificação da saida do metodo verContato
+	 */
 	@Test
 	public void verContatoTest() {
 		assertEquals("Axel Medeiros", contatoBasico.verContato());
 
 	}
-	
+	/**
+	 * Realizar a verificação da saida mais detalhada da exibição de um Contato.
+	 */
 	@Test
-	public void verDetalhesContato(){
-		assertEquals("Axel Medeiros -> (xx) xxxx - xxxx", 
+	public void verDetalhesContatoTest(){
+		assertEquals("Axel Medeiros - (xx) xxxx - xxxx", 
 					contatoBasico.verDetalhesContato());
 	}
 	
-	@Test
-	public void verDetalhesTelefoneVazio(){
-		// Posso verificar com a inicializacao null tbm
-		
-		Contato exemplo = new Contato("Killua","Zoldyck","");
-		
-		assertEquals("Killua Zoldyck -> Não registado", exemplo.verDetalhesContato());
-	}
-	
+	/**
+	 * Testa se dois contato diferentes mais com o mesmos atributos são iguais.
+	 */
 	@Test
 	public void contatosIguais() {
 		Contato a = new Contato("1","1","1");
