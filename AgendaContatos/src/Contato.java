@@ -26,6 +26,7 @@ public class Contato {
 
 	public Contato(String nomeContato, String sobrenomeContato,
 			String telefoneContato) {
+		
 		if (nomeContato == null || sobrenomeContato == null
 				|| telefoneContato == null) {
 			throw new NullPointerException(
@@ -40,23 +41,12 @@ public class Contato {
 		this.sobrenomeContato = sobrenomeContato;
 		this.telefoneContato = telefoneContato;
 	}
-
-	public String getNomeContato() {
-		return nomeContato;
-	}
-
-	public String getSobrenomeContato() {
-		return sobrenomeContato;
-	}
-
-	public String getTelefoneContato() {
-		return telefoneContato;
-	}
 	
 	/**
 	 * Retorna uma string com as princiais informações do contato.
 	 * @return String contendo o nome e sobrenome do contato.
 	 */
+	
 	public String verContato() {
 		return String.format("%s %s", this.nomeContato, this.sobrenomeContato);
 	}
@@ -73,6 +63,22 @@ public class Contato {
 	}
 
 	/**
+	 * Sobreescrita do método hashCode
+	 * 
+	 * @return retorna o hashcode do objeto considerando um nome, sobrenome, telefone do contato.
+	 */
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nomeContato == null) ? 0 : nomeContato.hashCode());
+		result = prime * result + ((sobrenomeContato == null) ? 0 : sobrenomeContato.hashCode());
+		result = prime * result + ((telefoneContato == null) ? 0 : telefoneContato.hashCode());
+		return result;
+	}
+	
+	/**
 	 * Sobreescrita do metodo equals, onde agora deverá considerar dois contato
 	 * como iguais se, e somente se, tiverem as mesmas informações de nome,
 	 * sobrenome e telefone.
@@ -82,18 +88,33 @@ public class Contato {
 	 * 
 	 * @return um boolean que representa se os objetos são iguais ou não.
 	 */
+	
 	@Override
 	public boolean equals(Object obj) {
-		Contato outro = (Contato) obj;
-
-		if ((this.nomeContato.equals(outro.getNomeContato()))
-				&& (this.sobrenomeContato.equals(outro.getSobrenomeContato()))
-				&& (this.telefoneContato.equals(outro.getTelefoneContato()))) {
-
+		if (this == obj)
 			return true;
-
-		}
-
-		return false;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contato other = (Contato) obj;
+		if (nomeContato == null) {
+			if (other.nomeContato != null)
+				return false;
+		} else if (!nomeContato.equals(other.nomeContato))
+			return false;
+		if (sobrenomeContato == null) {
+			if (other.sobrenomeContato != null)
+				return false;
+		} else if (!sobrenomeContato.equals(other.sobrenomeContato))
+			return false;
+		if (telefoneContato == null) {
+			if (other.telefoneContato != null)
+				return false;
+		} else if (!telefoneContato.equals(other.telefoneContato))
+			return false;
+		return true;
 	}
+
+	
 }

@@ -29,16 +29,22 @@ public class Agenda {
 	 */
 
 	public boolean cadastrarContato(String nomeContato,
-			String sobrenomeContato, String telefoneContato, int posicaoContato) {
+			String sobrenomeContato, String telefoneContato, int posicaoContato){
 
-		// posicaoContato -= 1;
+		
+		if (verificarPosicacaoJaRegistrada(posicaoContato - 1)) {
+			Contato exemplo = new Contato(nomeContato, sobrenomeContato, telefoneContato);
+			if (exemplo.equals(this.contatos[posicaoContato - 1])) {
+				throw new IllegalArgumentException("Contato já cadastrado");
+			}
+			
+			throw new IllegalArgumentException("Posicao já cadastrada, por favor, tente outra.");
+					
+		}
+		
 		if ((posicaoContato < 1) || (posicaoContato > 100)) {
 			throw new IndexOutOfBoundsException("POSIÇÃO INVÁLIDA!");
-		}
-
-		if (verificarPosicacaoJaRegistrada(posicaoContato - 1)) {
-			throw new UnsupportedOperationException(
-					"Posicao já cadastrada, por favor, tente outra");
+		
 		} else {
 			try {
 				contatos[posicaoContato - 1] = new Contato(nomeContato,
@@ -59,24 +65,20 @@ public class Agenda {
 	 * Representa a listagem de todos os contatos pertecentes a uma agenda
 	 */
 	
-	public void listarContatos() {
-		boolean exibiuContato = false;
+	public String listarContatos() {
+		String saida = "";
 		for (int i = 0; i < contatos.length; i++) {
 			if (contatos[i] != null) {
 				String posicaoContato = (i + 1) + " - ";
-				System.out.println(posicaoContato + contatos[i].verContato());
-				exibiuContato = true;
-			}
-
+				saida += String.format("%s %s\n",posicaoContato, contatos[i].verContato());
+				}
 		}
 		
-		if (!exibiuContato) {
-			System.out.println("Você ainda não cadastrou nenhum contato");
+		if (saida.equals("")) {
+			saida = "Nenhum contato cadastrato";
 		}
-		/*
-		 * Falta adicionar uma opcao para saber se o contato nao foi iniciado
-		 */
-
+		
+		return saida.trim();
 	}
 
 	/**
@@ -111,11 +113,8 @@ public class Agenda {
 	 */
 
 	private boolean verificarPosicacaoJaRegistrada(int posicao) {
-		if (this.contatos[posicao] != null) {
-			return true;
-		}
-
-		return false;
+		return this.contatos[posicao] != null;
+		
 	}
 
 }

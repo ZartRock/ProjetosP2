@@ -18,6 +18,7 @@ public class AgendaTest {
 	 * Criar uma instancia de Agenda com um cadastro inicial para testar as
 	 * demais funcionalidades
 	 */
+	
 	@Before
 	public void criarAgenda() {
 		agendaBasica = new Agenda();
@@ -32,8 +33,31 @@ public class AgendaTest {
 	public void cadastrarContatoSucessoTest() {
 
 		agendaBasica.cadastrarContato("Ronald", "Medeiro", "(83) 9999", 10);
+		agendaBasica.cadastrarContato("Ronald", "Medeiro", "(83) 9999", 25);
+
+	}
+	
+	@Test
+	public void cadastrarContatoCasosLimites() {
 		agendaBasica.cadastrarContato("Axel", "Medeiros", "(83)", 100);
 		agendaBasica.cadastrarContato("Axel", "Medeiros", "(83)", 1);
+		
+		try {
+
+			agendaBasica.cadastrarContato("Luiz", "Tavares", "Exemplo", 101);
+
+			fail("Não implementado na posição vazia acima de 100");
+		} catch (IndexOutOfBoundsException e) {
+
+		}
+
+		try {
+			agendaBasica.cadastrarContato("Luiz", "Tavares", "Exemplo", 0);
+
+			fail("Não implementado na posição vazia abaixo de 1");
+		} catch (IndexOutOfBoundsException e) {
+			// TODO: handle exception
+		}
 	}
 
 	/**
@@ -71,8 +95,8 @@ public class AgendaTest {
 			agendaBasica.cadastrarContato("A", "S", "()", 5);
 
 			fail("Cadastro de um contato em posicao já existente");
-		} catch (UnsupportedOperationException e) {
-			// TODO: handle exception
+		} catch (IllegalArgumentException e) {
+			
 		}
 	}
 
@@ -100,5 +124,26 @@ public class AgendaTest {
 		}
 
 	}
+	/**
+	 * Testa a funcionalidade de listarContato da Agenda. Testando os casos:
+	 *    - Se nenhum contato já foi cadastrado
+	 *    - Cadastro de 1 ou mais contatos cadastrados
+	 * 
+	 */
+	@Test
+	public void listarContatoTest() {
+		Agenda novaAgenda = new Agenda();
+		assertEquals("Nenhum contato cadastrato", novaAgenda.listarContatos());
+		
+		novaAgenda.cadastrarContato("Exemplo", "Sobrenome", "(xx) xxxxx - xxxx", 1);
+		assertEquals("1 -  Exemplo Sobrenome", novaAgenda.listarContatos());
+		
+		novaAgenda.cadastrarContato("Exemplo2", "Sobrenome2", "(xx) xxxxx - xxxx", 2);
+		assertEquals("1 -  Exemplo Sobrenome\n2 -  Exemplo2 Sobrenome2", novaAgenda.listarContatos());
+	}
 
 }
+
+
+
+

@@ -7,13 +7,7 @@ import java.util.Scanner;
  * 
  * @author Áxel Medeiros
  */
-/**
-* Representação de um estudante matriculado da UFCG, especificamente de
-* computação. Todo aluno precisa ter uma matrícula e é identificado unicamente
-* por esta matrícula.
-*
-* @author Áxel Medeiros
-*/
+
 public class AgendaMain {
 
 	private static Scanner input = new Scanner(System.in);;
@@ -32,7 +26,7 @@ public class AgendaMain {
 				break;
 
 			case "L":
-				agenda.listarContatos();
+				System.out.println(agenda.listarContatos());
 				break;
 
 			case "E":
@@ -72,6 +66,7 @@ public class AgendaMain {
 	 * @param agenda
 	 *            representa o objeto instanciado agenda.
 	 */
+	
 	private static void cadastrarContato(Agenda agenda) {
 		String nome, sobrenome, telefone;
 
@@ -95,13 +90,12 @@ public class AgendaMain {
 			if (Cadastrorealizado) {
 				System.out.println("CONTATO CADASTRADO!\n");
 			}
+			
 		} catch (NullPointerException e) {
 			System.out.println(e.getMessage());
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println(e.getMessage());
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		} catch (UnsupportedOperationException e) {
 			System.out.println(e.getMessage());
 		}
 	}
