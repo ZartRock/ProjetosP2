@@ -29,6 +29,10 @@ public class GrupoEstudo {
 		this.nomeGrupo = nomeGrupo;
 		this.participantes = new HashSet<>();
 	}
+	
+	public int getNumParticipantes() {
+		return this.participantes.size();
+	}
 
 	/**
 	 * Representa a operação de adicionar um novo Aluno no grupo.
@@ -63,7 +67,7 @@ public class GrupoEstudo {
 	}
 
 	/**
-	 * Retoran um hashcode baseado no nome do grupo
+	 * Retorana um hashcode baseado no nome do grupo
 	 */
 	@Override
 	public int hashCode() {
@@ -95,8 +99,4 @@ public class GrupoEstudo {
 		return true;
 	}
 	
-	public static void main(String[] args) {
-		GrupoEstudo g = new GrupoEstudo("Teoria dos Grafos");
-		System.out.println(g.toString());
-	}
 }

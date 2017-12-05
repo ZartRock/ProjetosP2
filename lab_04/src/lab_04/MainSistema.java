@@ -52,6 +52,8 @@ public class MainSistema {
 
 			default:
 				System.out.println("Opção inválida, por favor, digite novamente");
+				System.out.println();
+				imprimirMenu();
 				break;
 
 			}
@@ -179,10 +181,15 @@ public class MainSistema {
 			System.out.println(saida);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
+
+
 }
+
 
 
 

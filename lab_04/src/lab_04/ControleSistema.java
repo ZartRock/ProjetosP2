@@ -74,7 +74,7 @@ public class ControleSistema {
 
 	public boolean cadastrarGrupo(String nomeGrupo) {
 		try {
-			if (this.gruposEstudos.containsKey(nomeGrupo)) {
+			if (this.gruposEstudos.containsKey(nomeGrupo.toUpperCase())) {
 				return false;
 			}
 			this.gruposEstudos.put(nomeGrupo.toUpperCase(), new GrupoEstudo(nomeGrupo));
@@ -101,15 +101,16 @@ public class ControleSistema {
 	 */
 
 	public boolean alocarAlunos(String matriculaAluno, String nomeGrupo) {
+		nomeGrupo = nomeGrupo.toUpperCase();
+		
 		if (!this.todosAlunos.containsKey(matriculaAluno)) {
 			throw new IllegalArgumentException("Aluno não cadastrado.");
 		} else if (!this.gruposEstudos.containsKey(nomeGrupo)) {
 			throw new IllegalArgumentException("Grupo não cadastrado.");
 		}
 
-		System.out.println("executou");
 		Aluno aluno = this.todosAlunos.get(matriculaAluno);
-		return this.gruposEstudos.get(nomeGrupo.toUpperCase()).alocarParticipante(aluno);
+		return this.gruposEstudos.get(nomeGrupo).alocarParticipante(aluno);
 
 	}
 
@@ -119,11 +120,16 @@ public class ControleSistema {
 	 * @param nomeGrupo
 	 *            representa o nome do grupo
 	 * @return uma String com a representação do grupo
+	 * @throws Exception 
 	 */
 
-	public String imprimirGrupo(String nomeGrupo) {
+	public String imprimirGrupo(String nomeGrupo) throws Exception {
+		nomeGrupo = nomeGrupo.toUpperCase();
+		
 		if (!this.gruposEstudos.containsKey(nomeGrupo)) {
 			throw new IllegalArgumentException("Grupo não cadastrado.");
+		} else if(this.gruposEstudos.get(nomeGrupo).getNumParticipantes() == 0) {
+			throw new Exception("Grupo sem nenhum participante cadastrado.");
 		}
 
 		return this.gruposEstudos.get(nomeGrupo).toString();

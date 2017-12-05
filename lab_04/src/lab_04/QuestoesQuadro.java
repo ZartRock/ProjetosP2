@@ -9,15 +9,18 @@ import java.util.ArrayList;
  * @author Áxel Medeiros
  * 
  */
+
 public class QuestoesQuadro {
 	ArrayList<Aluno> responderamQuadro;
 
 	/**
 	 * Constroi um objeto do tipo QuestoesQuadro com uma lista vazia dos alunos que responderam no quadro.
 	 */
+	
 	public QuestoesQuadro() {
 		this.responderamQuadro = new ArrayList<>();
 	}
+	
 	/**
 	 * Retorna o número de alunos já foram ao quadro.
 	 * @return um int que representa o número de alunos já responderam questões no quadro.
@@ -25,10 +28,12 @@ public class QuestoesQuadro {
 	public int numAlunosCadastrados() {
 		return this.responderamQuadro.size();
 	}
+	
 	/**
 	 * Representa a operação de adicionar uma novo aluno a lista dos que responderam questões.
 	 * @param aluno Representa o aluno a ser adicionado no sistema
 	 */
+	
 	public void adicionarAluno(Aluno aluno) {
 		this.responderamQuadro.add(aluno);
 	}
@@ -41,6 +46,7 @@ public class QuestoesQuadro {
 	 * 			"1. aluno1"
 	 * 			"2. aluno2"
 	 */
+	
 	@Override
 	public String toString() {
 		String saida = "Alunos:" + "\n";
