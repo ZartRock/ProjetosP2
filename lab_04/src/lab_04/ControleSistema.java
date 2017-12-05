@@ -17,6 +17,7 @@ public class ControleSistema {
 	/**
 	 * Representa a construção do Controle do Sitema.
 	 */
+
 	public ControleSistema() {
 		this.todosAlunos = new HashMap<>();
 		this.gruposEstudos = new HashMap<>();
@@ -33,8 +34,9 @@ public class ControleSistema {
 	 * @param curso
 	 *            Representa o curso de um determinado aluno.
 	 * 
-	 * @return Retornar um boolean representando o sucesso ou não da operação.
+	 * @return Retorna um boolean representando o sucesso ou não da operação.
 	 */
+
 	public boolean cadastrarAluno(String matricula, String nome, String curso) {
 		if (this.todosAlunos.containsKey(matricula)) {
 			return false;
@@ -44,13 +46,14 @@ public class ControleSistema {
 	}
 
 	/**
-	 * Representa a operação de consulta das principais informaçẽos do aluno,
-	 * como matricula, nome, curso.
+	 * Representa a operação de consulta das principais informaçẽos do aluno, como
+	 * matricula, nome, curso.
 	 * 
 	 * @param matricula
 	 *            representa a matrícula de um aluno.
 	 * @return Retronar a representação deste aluno em um String.
 	 */
+
 	public String consultarAluno(String matricula) {
 		try {
 			return todosAlunos.get(matricula).toString();
@@ -68,13 +71,13 @@ public class ControleSistema {
 	 *            Representa o nome do grupo em questão.
 	 * @return Retorna um boolean se a operação foi um sucesso ou não.
 	 */
+
 	public boolean cadastrarGrupo(String nomeGrupo) {
 		try {
 			if (this.gruposEstudos.containsKey(nomeGrupo)) {
 				return false;
 			}
-			this.gruposEstudos.put(nomeGrupo.toUpperCase(), new GrupoEstudo(
-					nomeGrupo));
+			this.gruposEstudos.put(nomeGrupo.toUpperCase(), new GrupoEstudo(nomeGrupo));
 
 			return true;
 		} catch (NullPointerException e) {
@@ -93,9 +96,10 @@ public class ControleSistema {
 	 *            Representa o nome do grupo em questão.
 	 * 
 	 * @return Retorna se o aluno pode ser alocado em um grupo ou não. Caso não,
-	 *         este pode ser representado por um operação inválida ou o aluno já está
-	 *         cadastrado no grupo.
+	 *         este pode ser representado por um operação inválida ou o aluno já
+	 *         está cadastrado no grupo.
 	 */
+
 	public boolean alocarAlunos(String matriculaAluno, String nomeGrupo) {
 		if (!this.todosAlunos.containsKey(matriculaAluno)) {
 			throw new IllegalArgumentException("Aluno não cadastrado.");
@@ -105,16 +109,18 @@ public class ControleSistema {
 
 		System.out.println("executou");
 		Aluno aluno = this.todosAlunos.get(matriculaAluno);
-		return this.gruposEstudos.get(nomeGrupo.toUpperCase())
-				.alocarParticipante(aluno);
+		return this.gruposEstudos.get(nomeGrupo.toUpperCase()).alocarParticipante(aluno);
 
 	}
+
 	/**
 	 * Retorna a representação de um Grupo em uma string.
+	 * 
 	 * @param nomeGrupo
-	 * 	representa o nome do grupo
+	 *            representa o nome do grupo
 	 * @return uma String com a representação do grupo
 	 */
+
 	public String imprimirGrupo(String nomeGrupo) {
 		if (!this.gruposEstudos.containsKey(nomeGrupo)) {
 			throw new IllegalArgumentException("Grupo não cadastrado.");
@@ -122,12 +128,14 @@ public class ControleSistema {
 
 		return this.gruposEstudos.get(nomeGrupo).toString();
 	}
-	
+
 	/**
 	 * Representa o registro do aluno que respondeu o quadro
+	 * 
 	 * @param matriculaAluno
-	 * 	representa a matricula do aluno a ser registrado.
+	 *            representa a matricula do aluno a ser registrado.
 	 */
+
 	public void adicionarAlunoRespondeuQuadro(String matriculaAluno) {
 		if (!this.todosAlunos.containsKey(matriculaAluno)) {
 			throw new IllegalArgumentException("Aluno não cadastrado.");
@@ -136,14 +144,15 @@ public class ControleSistema {
 		Aluno aluno = this.todosAlunos.get(matriculaAluno);
 		this.quadro.adicionarAluno(aluno);
 	}
-	
+
 	/**
 	 * Retorna um representação dos Alunos que responderam questões no quadro
-	 * @return 
-	 * 	uma string com a representação de QuestoesQuadro
+	 * 
+	 * @return uma string com a representação de QuestoesQuadro
 	 * @throws Exception
-	 * 	lança a exceção com um mensagem caso nenhum aluno foi cadastrado.
+	 *             lança a exceção com um mensagem caso nenhum aluno foi cadastrado.
 	 */
+
 	public String imprimirQuestoesQuadro() throws Exception {
 		if (quadro.numAlunosCadastrados() == 0) {
 			throw new Exception("Nenhum cadastro realizao");

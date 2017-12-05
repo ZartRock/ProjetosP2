@@ -18,6 +18,7 @@ public class Aluno {
 	 * @param curso
 	 * 	representa o curso atual do aluno.
 	 */
+	
 	public Aluno(String nome, String matricula, String curso) {
 
 		if (nome == null || matricula == null || curso == null) {
@@ -33,8 +34,9 @@ public class Aluno {
 	/**
 	 * Retorna uma representação do Aluno com suas informação.
 	 * 	
-	 *@return retorna um Strin no formado "Matricula - nome - curso".
+	 *@return retorna um String no formado "Matrícula - nome - curso".
 	 */
+	
 	@Override
 	public String toString() {
 		return String.format("%s - %s - %s", this.matricula, this.nome,

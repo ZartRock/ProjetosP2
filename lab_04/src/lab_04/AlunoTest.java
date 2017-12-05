@@ -12,20 +12,52 @@ public class AlunoTest {
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void instanciarValoresNulos() {
+	public void instanciarNomeNulo() {
 		new Aluno(null, "111", "Ciência");
+	
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void instanciarMatriculaNula() {
 		new Aluno("Bob", null, "Computacao");
+
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void instanciarCursoNulo() {
 		new Aluno("Noob", "333", null);
+
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void instanciarValoresNulos() {
 		new Aluno(null, null, null);
 
 	}
+	
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void instanciarNomeInvalido() {
+		new Aluno("", "222", "Filosofia");
+	
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void instanciarMatriculaInvalida() {
+		new Aluno("Bob", "", "Arquitetura");
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void instanciarCursoInvalido() {
+		new Aluno("Noob", "555", "");
 
+	}
+	
 	@Test(expected = IllegalArgumentException.class)
 	public void instanciarValoresInvalidos() {
-		new Aluno("", "222", "Filosofia");
-		new Aluno("Bob", "", "Arquitetura");
-		new Aluno("Steve", "333", "");
 		new Aluno("", "", "");
+
 	}
 
 	@Test
