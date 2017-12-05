@@ -5,9 +5,12 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class QuestoesQuadroTest {
-
+	
+	/**
+	 * Testa se classe está podende ser instanciada
+	 */
 	@Test
-	public void test() {
+	public void questoesQuadroTest() {
 		new QuestoesQuadro();
 	}
 	
