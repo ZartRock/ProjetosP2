@@ -10,9 +10,9 @@ public class MainSistema {
 
 		ControleSistema sistema = new ControleSistema();
 		imprimirMenu();
-
-		// Não é recomendado em Java o uso do while(true)
-		while (true) {
+		
+		boolean continuar = true;
+		while (continuar) {
 			System.out.print("Opcao> ");
 			String opcao = input.nextLine();
 			switch (opcao) {
@@ -43,9 +43,11 @@ public class MainSistema {
 				break;
 
 			case "I":
+				imprimirQuestoesQuadro(sistema);
 				break;
 
 			case "O":
+				continuar = false;
 				break;
 
 			default:
@@ -161,10 +163,10 @@ public class MainSistema {
 	}
 	
 	private static void imprimirQuestoesQuadro(ControleSistema sistema) {
-		String saida = sistema.imprimirQuestoesQuadro();
-		
-		if (saida.equals("")) {
-			System.out.println();
+		try {
+			System.out.println(sistema.imprimirQuestoesQuadro());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -182,10 +184,5 @@ public class MainSistema {
 
 }
 
-/*
- * Massas: O que acontece se eu esqueço o break no swith case??
- * 
- * 
- * 
- * 
- */
+
+
