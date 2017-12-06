@@ -73,18 +73,13 @@ public class ControleSistema {
 	 */
 
 	public boolean cadastrarGrupo(String nomeGrupo) {
-		try {
-			if (this.gruposEstudos.containsKey(nomeGrupo.toUpperCase())) {
-				return false;
-			}
-			this.gruposEstudos.put(nomeGrupo.toUpperCase(), new GrupoEstudo(nomeGrupo));
-
-			return true;
-		} catch (NullPointerException e) {
-			throw new NullPointerException(e.getMessage());
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(e.getMessage());
+		
+		if (this.gruposEstudos.containsKey(nomeGrupo.toUpperCase())) {
+			return false;
 		}
+
+		this.gruposEstudos.put(nomeGrupo.toUpperCase(), new GrupoEstudo(nomeGrupo));
+		return true;
 	}
 
 	/**
@@ -127,7 +122,7 @@ public class ControleSistema {
 		nomeGrupo = nomeGrupo.toUpperCase();
 		
 		if (!this.gruposEstudos.containsKey(nomeGrupo)) {
-			throw new IllegalArgumentException("Grupo não cadastrado.");
+			throw new Exception("Grupo não cadastrado.");
 		} else if(this.gruposEstudos.get(nomeGrupo).getNumParticipantes() == 0) {
 			throw new Exception("Grupo sem nenhum participante cadastrado.");
 		}

@@ -5,10 +5,11 @@ import java.util.Scanner;
 public class MainSistema {
 
 	private static Scanner input;
+	private static ControleSistema sistema = new ControleSistema();
+	
 	public static void main(String[] args) {
 		input = new Scanner(System.in);
 
-		ControleSistema sistema = new ControleSistema();
 		imprimirMenu();
 		
 		boolean continuar = true;
@@ -17,33 +18,33 @@ public class MainSistema {
 			String opcao = input.nextLine();
 			switch (opcao) {
 			case "C":
-				cadastrarAlunos(sistema);
+				cadastrarAlunos();
 				break;
 
 			case "E":
-				consultarAluno(sistema);
+				consultarAluno();
 				break;
 
 			case "N":
-				cadastrarGrupos(sistema);
+				cadastrarGrupos();
 				break;
 
 			case "A":
 				System.out.print("(A)locar Aluno ou (I)mprimir Grupo? ");
 				String escolha = input.nextLine();
 				if (escolha.equals("A")) {
-					alocarAlunos(sistema);
+					alocarAlunos();
 				} else if (escolha.equals("I")) {
-					imprimirGrupo(sistema);
+					imprimirGrupo();
 				}
 				break;
 
 			case "R":
-				adicionarAlunoRespondeuQuadro(sistema);
+				adicionarAlunoRespondeuQuadro();
 				break;
 
 			case "I":
-				imprimirQuestoesQuadro(sistema);
+				imprimirQuestoesQuadro();
 				break;
 
 			case "O":
@@ -62,7 +63,9 @@ public class MainSistema {
 		}
 
 	}
-
+	/**
+	 * Realizaçao a impressão do MENU 
+	 */
 	private static void imprimirMenu() {
 		System.out.println("(C)adastrar Aluno");
 		System.out.println("(E)xibir Aluno");
@@ -73,8 +76,10 @@ public class MainSistema {
 		System.out.println("(O)ra, vamos fechar o programa!");
 		System.out.println();
 	}
-
-	private static void consultarAluno(ControleSistema sistema) {
+	/**
+	 * Representa a consulta de um aluno no sistema
+	 */
+	private static void consultarAluno() {
 		System.out.print("Matrícula: ");
 		String matricula = input.nextLine();
 
@@ -86,8 +91,10 @@ public class MainSistema {
 		}
 
 	}
-
-	private static void cadastrarAlunos(ControleSistema sistema) {
+	/*
+	 * Representa o cadastro do Aluno no sistema
+	 */
+	private static void cadastrarAlunos() {
 		System.out.print("Matrícula: ");
 		String matricula = input.nextLine();
 
@@ -112,8 +119,10 @@ public class MainSistema {
 		}
 
 	}
-
-	private static void cadastrarGrupos(ControleSistema sistema) {
+	/*
+	 * Representa o cadastro do grupo no sistema atual.
+	 */
+	private static void cadastrarGrupos() {
 		System.out.print("Grupo: ");
 		String nomeGrupo = input.nextLine();
 
@@ -132,8 +141,10 @@ public class MainSistema {
 		}
 
 	}
-
-	private static void alocarAlunos(ControleSistema sistema) {
+	/*
+	 * Representa a alocação de um aluno em um sistema.
+	 */
+	private static void alocarAlunos() {
 		System.out.print("Matrícula: ");
 		String matriculaAluno = input.nextLine();
 
@@ -150,8 +161,10 @@ public class MainSistema {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	private static void adicionarAlunoRespondeuQuadro(ControleSistema sistema) {
+	/*
+	 * Representa a operação de registrar que um aluno respondeu no quadro no sistema.
+	 */
+	private static void adicionarAlunoRespondeuQuadro() {
 		System.out.print("Matrícula: ");
 		String matriculaAluno = input.nextLine();
 		
@@ -163,24 +176,26 @@ public class MainSistema {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	private static void imprimirQuestoesQuadro(ControleSistema sistema) {
+	/**
+	 * Representa a impressão dos alunos que responderam no quadro.
+	 */
+	private static void imprimirQuestoesQuadro() {
 		try {
 			System.out.println(sistema.imprimirQuestoesQuadro());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
-
-	private static void imprimirGrupo(ControleSistema sistema) {
+	/**
+	 * Representa a impressão da representação de um grupo específico no sistema.
+	 */
+	private static void imprimirGrupo() {
 		System.out.print("Grupo: ");
 		String nomeGrupo = input.nextLine();
 		try {
 			String saida = sistema.imprimirGrupo(nomeGrupo);
 			
 			System.out.println(saida);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

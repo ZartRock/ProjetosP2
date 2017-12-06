@@ -22,9 +22,9 @@ public class Aluno {
 	public Aluno(String nome, String matricula, String curso) {
 
 		if (nome == null || matricula == null || curso == null) {
-			throw new NullPointerException("Paramentos de Aluno vazios");
+			throw new NullPointerException("Paramenteos de aluno vazios");
 		} else if (nome.equals("") || matricula.equals("") || curso.equals("")) {
-			throw new IllegalArgumentException("Parametos inválidos");
+			throw new IllegalArgumentException("Parametros inválidos");
 		}
 		this.nome = nome;
 		this.matricula = matricula;
