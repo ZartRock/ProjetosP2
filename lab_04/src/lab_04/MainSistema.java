@@ -2,16 +2,23 @@ package lab_04;
 
 import java.util.Scanner;
 
+/**
+ * Classe reponsável por iniciar o sistema de Controle de Alunos.
+ * 
+ * @author Áxel Crispim e Medeiros
+ *
+ */
 public class MainSistema {
 
 	private static Scanner input;
 	private static ControleSistema sistema = new ControleSistema();
 	
+	
 	public static void main(String[] args) {
 		input = new Scanner(System.in);
 
 		imprimirMenu();
-		
+
 		boolean continuar = true;
 		while (continuar) {
 			System.out.print("Opcao> ");
@@ -63,8 +70,9 @@ public class MainSistema {
 		}
 
 	}
+
 	/**
-	 * Realizaçao a impressão do MENU 
+	 * Realizaçao a impressão do MENU
 	 */
 	private static void imprimirMenu() {
 		System.out.println("(C)adastrar Aluno");
@@ -76,6 +84,7 @@ public class MainSistema {
 		System.out.println("(O)ra, vamos fechar o programa!");
 		System.out.println();
 	}
+
 	/**
 	 * Representa a consulta de um aluno no sistema
 	 */
@@ -91,6 +100,7 @@ public class MainSistema {
 		}
 
 	}
+
 	/*
 	 * Representa o cadastro do Aluno no sistema
 	 */
@@ -119,6 +129,7 @@ public class MainSistema {
 		}
 
 	}
+
 	/*
 	 * Representa o cadastro do grupo no sistema atual.
 	 */
@@ -141,6 +152,7 @@ public class MainSistema {
 		}
 
 	}
+
 	/*
 	 * Representa a alocação de um aluno em um sistema.
 	 */
@@ -161,21 +173,24 @@ public class MainSistema {
 			System.out.println(e.getMessage());
 		}
 	}
+
 	/*
-	 * Representa a operação de registrar que um aluno respondeu no quadro no sistema.
+	 * Representa a operação de registrar que um aluno respondeu no quadro no
+	 * sistema.
 	 */
 	private static void adicionarAlunoRespondeuQuadro() {
 		System.out.print("Matrícula: ");
 		String matriculaAluno = input.nextLine();
-		
+
 		try {
 			sistema.adicionarAlunoRespondeuQuadro(matriculaAluno);
-			
+
 			System.out.println("ALUNO REGISTRADO!");
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}
 	}
+
 	/**
 	 * Representa a impressão dos alunos que responderam no quadro.
 	 */
@@ -186,6 +201,7 @@ public class MainSistema {
 			System.out.println(e.getMessage());
 		}
 	}
+
 	/**
 	 * Representa a impressão da representação de um grupo específico no sistema.
 	 */
@@ -194,17 +210,11 @@ public class MainSistema {
 		String nomeGrupo = input.nextLine();
 		try {
 			String saida = sistema.imprimirGrupo(nomeGrupo);
-			
+
 			System.out.println(saida);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-
-
 }
-
-
-
-

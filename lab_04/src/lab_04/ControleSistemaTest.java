@@ -201,6 +201,7 @@ public class ControleSistemaTest {
 	/**
 	 * Adiciona um cadastro de aluno no sistema
 	 */
+	
 	private void cadastrarAlunoExemplo() {
 		controle.cadastrarAluno("111", "Exemplo", "CC");
 	}
