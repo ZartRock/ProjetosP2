@@ -7,9 +7,9 @@ public class Aposta {
 
 	private String nomeApostador;
 	private double qtnAposta;
-	private int previsao; //Posso mudar para String
+	private boolean previsao; //Posso mudar para String
 	
-	public Aposta(String nomeApostador, double qtnAposta, int previsao){
+	public Aposta(String nomeApostador, double qtnAposta, boolean previsao){
 		tratarExcecoesConstrutor(nomeApostador, qtnAposta, previsao);
 		
 		this.nomeApostador = nomeApostador;
@@ -27,25 +27,22 @@ public class Aposta {
 		return String.format("%s - %f - %s", this.nomeApostador, this.qtnAposta, resultadoEsperado);
 	}
 	
-	private void tratarExcecoesConstrutor(String nome, double qtn, int previsao){
+	private void tratarExcecoesConstrutor(String nome, double qtn, boolean previsao){
 		if (nome.equals(null)) {
 			throw new NullPointerException("Nome nulo");
 		}
 		
-		if (nome.equals("") || qtn <= 0 || previsao > 1 || previsao < 0) {
+		if (nome.equals("") || qtn <= 0) {
 			throw new IllegalArgumentException("Parametros inválidos");
 		}
 	}
 	
 	private String retornaResultadoEsperadoString(){
 		String resultado = "";
-		switch (this.previsao) {
-		case 0:
-			resultado = "N VAI ACONTECER";
-			break;
-		case 1:
+		if (this.previsao){
 			resultado = "VAI ACONTECER";
-			break;
+		}else{
+			resultado = "N VAI ACONTECER";
 		}
 		
 		return resultado;
@@ -54,7 +51,7 @@ public class Aposta {
 	
 	/*
 	 * TODO Creio que tenho que fazer mais duas classes 
-	 * * posso usar herança
+	 *
 	 * 
 	 */
 
