@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author axel
+ *
+ */
 public class Aposta {
 
 	private String nomeApostador;
@@ -53,6 +57,5 @@ public class Aposta {
 	 * * posso usar herança
 	 * 
 	 */
-
 
 }
