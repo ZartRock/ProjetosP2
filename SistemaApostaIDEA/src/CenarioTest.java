@@ -1,4 +1,3 @@
-package testes;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,7 +11,6 @@ import static org.junit.Assert.assertEquals;
 public class CenarioTest {
 
     static private Cenario cenarioExemplo;
-
     @Before
     public void setUp(){
         this.cenarioExemplo = new Cenario("Vai chover hoje");

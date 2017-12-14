@@ -25,8 +25,8 @@ public class Cenario {
 		this.conjuntoApostas.add(aposta);
 		return true;
 	}
-	
-	
+
+
 	public String toString(int numeracao){
 		String estado = "";
 		if (this.estaTerminado == false) {
