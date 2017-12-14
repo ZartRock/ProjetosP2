@@ -1,14 +1,16 @@
+package testes;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import sistema.Aposta;
 
 public class ApostaTest {
 
     static private Aposta apostaExemplo;
 
     /**
-     * Iniciar uma objeto Aposta para ser ultilizado de exemplo para outros arquivos do sistema
+     * Iniciar uma objeto sistema.Aposta para ser ultilizado de exemplo para outros arquivos do sistema
      * @throws Exception
      */
     @Before
@@ -58,11 +60,14 @@ public class ApostaTest {
 
 
     /**
-     * Testa a saída da classe está correta
+     * Testa a exibição da classe está correta coparando com outra com outra Aposta com as mesma informações.
      */
     @Test
     public void toStringTestAutomatico() {
         Aposta aposta2 = new Aposta("Coisinha", 100, true);
         Assert.assertEquals(aposta2.toString(), apostaExemplo.toString());
     }
+
+    @Test
+    public void toString
 }

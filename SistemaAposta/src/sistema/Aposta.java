@@ -1,3 +1,5 @@
+package sistema;
+
 /**
  * 
  * @author Áxel Medeiros
@@ -18,7 +20,8 @@ public class Aposta {
 	}
 	
 	public double getQtnAposta(){ return this.qtnAposta; }
-	
+
+	public boolean getPrevisao(){ return this.previsao; }
 	
 	@Override
 	public String toString(){

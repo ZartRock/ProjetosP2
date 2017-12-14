@@ -3,16 +3,17 @@ package testes;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import sistema.Aposta;
+import sistema.Cenario;
 
 import static org.junit.Assert.assertEquals;
 
-/** Classe reponsável por fazer os testes na classe "Aposta".
+/** Classe reponsável por fazer os testes na classe "sistema.Aposta".
  * @author Áxel Medeiros
  */
 public class CenarioTest {
 
     static private Cenario cenarioExemplo;
-
     @Before
     public void setUp(){
         this.cenarioExemplo = new Cenario("Vai chover hoje");

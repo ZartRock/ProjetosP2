@@ -1,3 +1,4 @@
+package sistema;
 
 public class ApostaEspecial extends Aposta {
 
