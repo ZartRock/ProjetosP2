@@ -1,11 +1,13 @@
 package sistema;
 
+import easyaccept.EasyAccept;
+
 public class Facade {
 	ControleSistema controle;
 
 	public Facade() { }
 
-	public void iniciarSistemaFinancas(double porcetagemCasa, double caixaAtual) {
+	public void inicializa(double porcetagemCasa, double caixaAtual) {
 		this.controle = new ControleSistema(porcetagemCasa, caixaAtual);
 
 	}
@@ -42,12 +44,9 @@ public class Facade {
 	public String exibeApostas(int numCenario){ return this.controle.exibirApostas(numCenario); }
 
 
+
 	public static void main(String[] args) {
-		Facade a = new Facade();
-		a.iniciarSistemaFinancas(0.1, 20);
-		a.cadastrarCenario("alo");
-		System.out.println(a.getCaixa());
+		args = new String[] {"sistema.Facade", "teste_aceitacao/us1_test.txt"};
+		EasyAccept.main(args);
 	}
-	
-	
 }

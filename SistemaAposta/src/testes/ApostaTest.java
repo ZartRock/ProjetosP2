@@ -67,7 +67,4 @@ public class ApostaTest {
         Aposta aposta2 = new Aposta("Coisinha", 100, true);
         Assert.assertEquals(aposta2.toString(), apostaExemplo.toString());
     }
-
-    @Test
-    public void toString
 }
