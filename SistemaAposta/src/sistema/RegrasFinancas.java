@@ -17,9 +17,14 @@ public class RegrasFinancas {
 	public void adicionarValorCaixa(double valor){ this.caixaAtual += valor;}
 
 	private void tratarExcecoesCronstutor(double porcetagemCasa, double caixaAtual){
-		if (caixaAtual < 0 || porcetagemCasa <= 0 || porcetagemCasa >= 1) {
-			throw new IllegalArgumentException("Valores invalidos");
+		if (caixaAtual < 0) {
+			throw new IllegalArgumentException("Erro na inicializacao: Caixa nao pode ser inferior a 0");
 		}
+
+		if (porcetagemCasa <= 0 || porcetagemCasa >= 1){
+			throw new IllegalArgumentException("Erro na inicializacao: Taxa nao pode ser inferior a 0");
+		}
+
 	}
 	
 	

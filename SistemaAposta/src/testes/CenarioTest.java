@@ -6,8 +6,6 @@ import org.junit.Test;
 import sistema.Aposta;
 import sistema.Cenario;
 
-import static org.junit.Assert.assertEquals;
-
 /** Classe reponsável por fazer os testes na classe "sistema.Aposta".
  * @author Áxel Medeiros
  */
@@ -19,6 +17,9 @@ public class CenarioTest {
         this.cenarioExemplo = new Cenario("Vai chover hoje");
     }
 
+    /**
+     * Testa uma inicializa do objeto com sucesso
+     */
     @Test
     public void inicializarSucesso(){
         new Cenario("Vou tomar 1L de café hoje");
@@ -47,7 +48,6 @@ public class CenarioTest {
 
         adicionarNumApostas(c1,2);
         adicionarNumApostas(cenarioExemplo,2);
-
         Assert.assertEquals(c1.toString(1), cenarioExemplo.toString(1));
 
     }

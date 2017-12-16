@@ -5,14 +5,18 @@ import easyaccept.EasyAccept;
 public class Facade {
 	ControleSistema controle;
 
+	public static void main(String[] args) {
+		args = new String[] {"sistema.Facade", "teste_aceitacao/us1_test.txt", "teste_aceitacao/us2_test.txt"};
+		EasyAccept.main(args);
+	}
 	public Facade() { }
 
-	public void inicializa(double porcetagemCasa, double caixaAtual) {
+	public void inicializa(double caixaAtual, double porcetagemCasa) {
 		this.controle = new ControleSistema(porcetagemCasa, caixaAtual);
 
 	}
 	
-	public double getCaixa(){
+	public int getCaixa(){
 		return this.controle.retornarCaixaAtual();
 	}
 
@@ -45,8 +49,5 @@ public class Facade {
 
 
 
-	public static void main(String[] args) {
-		args = new String[] {"sistema.Facade", "teste_aceitacao/us1_test.txt"};
-		EasyAccept.main(args);
-	}
+
 }

@@ -6,13 +6,14 @@ public class ControleSistema {
 
 	private ArrayList<Cenario> cenarios;
 	private RegrasFinancas financeiro;
-	
+
+
 	public ControleSistema(double porcetagemCasa, double caixaAtual){
 		this.cenarios = new ArrayList<Cenario>();
 		this.financeiro = new RegrasFinancas(porcetagemCasa, caixaAtual);
 	}
 	
-	public double retornarCaixaAtual(){	return this.financeiro.getCaixaAtual(); }
+	public int retornarCaixaAtual(){	return (int)(this.financeiro.getCaixaAtual()); }
 	
 	public void cadastrarCenario(String descricaoCenario){
 		this.cenarios.add(new Cenario(descricaoCenario));
@@ -42,13 +43,13 @@ public class ControleSistema {
 	}
 	
 	public String exibirCenario(int numCenario){
-		return this.cenarios.get(numCenario).toString();
+		return this.cenarios.get(numCenario).toString(numCenario);
 	}
 	
 	public String exibirTodosCenarios(){
 		String saida = "";
 		for (int i = 0; i < this.cenarios.size(); i++) {
-			saida += this.cenarios.get(i).toString();
+			saida += this.cenarios.get(i).toString(i);
 		}
 		
 		return saida;
@@ -86,6 +87,8 @@ public class ControleSistema {
 		Cenario cenario = this.cenarios.get(numCenario);
 		return (int) Math.floor((cenario.valorRecolhido() - cenario.valorRecolhido() * financeiro.getPorcetagemCasa()));
 	}
+
+
 
 
 }

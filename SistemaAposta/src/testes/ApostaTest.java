@@ -1,9 +1,10 @@
 package testes;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import sistema.Aposta;
+
+import static org.junit.Assert.assertEquals;
 
 public class ApostaTest {
 
@@ -65,6 +66,6 @@ public class ApostaTest {
     @Test
     public void toStringTestAutomatico() {
         Aposta aposta2 = new Aposta("Coisinha", 100, true);
-        Assert.assertEquals(aposta2.toString(), apostaExemplo.toString());
+        assertEquals(aposta2.toString(), apostaExemplo.toString());
     }
 }

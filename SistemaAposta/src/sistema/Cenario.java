@@ -79,8 +79,9 @@ public class Cenario {
 
 	public String toString(int numeracao){
 		String estado = "";
+
 		if (this.estaTerminado == false) {
-			estado = "Não finalizado";
+			estado = "Nao finalizado";
 		}else if (this.resultadoCenario == true) {
 			estado = "Finalizado (ocorreu)";
 		}else{
@@ -106,5 +107,4 @@ public class Cenario {
 
         return caixaTotal;
     }
-
 }
