@@ -2,12 +2,21 @@ package sistema;
 
 import java.util.ArrayList;
 
+/**
+ * Classe responsável por fazer todo o controle do sistema
+ */
 public class ControleSistema {
 
 	private ArrayList<Cenario> cenarios;
 	private Financas financeiro;
 
-
+    /**
+     * Contrutor do controle do sistema
+     * @param porcetagemCasa
+     *          Indica a porcentagem em float da caxa
+     * @param caixaAtual
+     *          Representa a quantidade de caixa inicial do sistema.
+     */
 	public ControleSistema(double porcetagemCasa, int caixaAtual){
 		this.cenarios = new ArrayList<Cenario>();
 		this.financeiro = new Financas(porcetagemCasa, caixaAtual);
@@ -132,7 +141,9 @@ public class ControleSistema {
         int numCenario = numFornecidoUsuario - 1;
 
 		Cenario cenario = this.cenarios.get(numCenario);
-
+        if (!cenario.getEstaTerminado()){
+            throw new IllegalArgumentException("Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
+        }
 
 		double valorCentavos =  Math.floor((cenario.valorRecolhido() - cenario.valorRecolhido() * financeiro.getPorcetagemCasa()));
 
@@ -156,12 +167,18 @@ public class ControleSistema {
 
 	private void tratarErroSelecionarCenario(int numFornecidoUsuario, String[] mensagens){
 		tratarErrosCenarioInvalido(numFornecidoUsuario, mensagens[0]);
-
+		tratarErrosCenarioNaoCadastrado(numFornecidoUsuario, mensagens[1]);
 	}
 
 
 	private void tratarErrosCenarioInvalido(int numFornecidoUsuario, String mensagem){
 		if (numFornecidoUsuario < 1){
+			throw new IllegalArgumentException(mensagem);
+		}
+	}
+
+	private void tratarErrosCenarioNaoCadastrado(int numFornecidoUsuario, String mensagem){
+		if (numFornecidoUsuario > this.cenarios.size()){
 			throw new IllegalArgumentException(mensagem);
 		}
 	}

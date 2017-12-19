@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import sistema.Financas;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Classe reponsável por testar "Financas"
  */
@@ -47,5 +49,11 @@ public class FinancasTest {
     @Test(expected = IllegalArgumentException.class)
     public void inicializarPorcentagemNula(){
         new Financas(0,-1);
+    }
+
+    @Test
+    public void adicionarValorCaixaSuceso(){
+        this.financeiro.adicionarValorCaixa(10);
+        assertEquals(10,this.financeiro.getCaixaAtualCentavos());
     }
 }

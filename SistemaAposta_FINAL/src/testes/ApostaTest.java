@@ -62,6 +62,13 @@ public class ApostaTest {
         new Aposta("A", 0, "VAI ACONTECER");
     }
 
+    /**
+     * Testa uma apota com uma quantidade real.
+     */
+    @Test()
+    public void inicializarCaixaReal(){
+        new Aposta("A", 0.2, "VAI ACONTECER");
+    }
 
     /**
      * Testa a exibição da classe está correta coparando com outra com outra Aposta com as mesma informações.
@@ -72,3 +79,5 @@ public class ApostaTest {
         assertEquals(aposta2.toString(), apostaExemplo.toString());
     }
 }
+
+
