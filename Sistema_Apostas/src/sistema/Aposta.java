@@ -1,7 +1,7 @@
 package sistema;
 
 /**
- * 
+ * Classe que representa uma apsota no sistema.
  * @author Áxel Medeiros
  *
  */
@@ -10,7 +10,15 @@ public class Aposta {
 	private String nomeApostador;
 	private double qtnAposta;
 	private boolean previsao; //Posso mudar para String
-	
+
+	/**
+	 *
+	 * @param nomeApostador
+	 * 		Refere-se ao nome do usuário que realizou a aposta.
+	 * @param qtnAposta
+	 * 		Quantia a ser apostada.
+	 * @param previsaoString
+	 */
 	public Aposta(String nomeApostador, double qtnAposta, String previsaoString){
 		tratarExcecoesConstrutor(nomeApostador, qtnAposta, previsaoString);
 
