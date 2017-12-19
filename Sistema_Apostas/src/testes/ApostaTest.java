@@ -6,6 +6,9 @@ import sistema.Aposta;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Classe responsável por fazer os test "Aposta";
+ */
 public class ApostaTest {
 
     static private Aposta apostaExemplo;
@@ -16,7 +19,7 @@ public class ApostaTest {
      */
     @Before
     public void setUp() throws Exception {
-        apostaExemplo = new Aposta("Coisinha", 100, true);
+        apostaExemplo = new Aposta("Coisinha", 100, "VAI ACONTECER");
     }
 
     /**
@@ -24,7 +27,7 @@ public class ApostaTest {
      */
     @Test
     public void inicializarSucesso() {
-        new Aposta("Axel", 1, false);
+        new Aposta("Axel", 1, "N VAI ACONTECER");
     }
 
     /**
@@ -32,7 +35,7 @@ public class ApostaTest {
      */
     @Test(expected=NullPointerException.class)
     public void inicializarNomeNulo() {
-        new Aposta(null, 1, true);
+        new Aposta(null, 1, "VAI ACONTECER");
     }
 
     /**
@@ -40,7 +43,7 @@ public class ApostaTest {
      */
     @Test(expected=IllegalArgumentException.class)
     public void inicializarNomeInvalido(){
-        new Aposta("", 1, false);
+        new Aposta("", 1, "N VAI ACONTECER");
     }
 
     /**
@@ -48,7 +51,7 @@ public class ApostaTest {
      */
     @Test(expected=IllegalArgumentException.class)
     public void inicializarQuantidadeNegativa(){
-        new Aposta("A", -1, false);
+        new Aposta("A", -1, "N VAI ACONTECER");
     }
 
     /**
@@ -56,7 +59,7 @@ public class ApostaTest {
      */
     @Test(expected=IllegalArgumentException.class)
     public void inicializarQuantidadeLimite(){
-        new Aposta("A", 0, true);
+        new Aposta("A", 0, "VAI ACONTECER");
     }
 
 
@@ -65,7 +68,7 @@ public class ApostaTest {
      */
     @Test
     public void toStringTestAutomatico() {
-        Aposta aposta2 = new Aposta("Coisinha", 100, true);
+        Aposta aposta2 = new Aposta("Coisinha", 100, "VAI ACONTECER");
         assertEquals(aposta2.toString(), apostaExemplo.toString());
     }
 }

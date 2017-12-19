@@ -2,20 +2,22 @@ package sistema;
 
 import easyaccept.EasyAccept;
 
+/**
+ * Classe responsável de ser a fachada por onde acesso os controladores desse sistema.
+ */
 public class Facade {
 	ControleSistema controle;
 
 	public static void main(String[] args) {
-//,
-//
+
 	    args = new String[] {"sistema.Facade",
                 "teste_aceitacao/us1_test.txt", "teste_aceitacao/us2_test.txt",
-                "teste_aceitacao/us3_test.txt"/*, "teste_aceitacao/us4_test.txt" */};
+                "teste_aceitacao/us3_test.txt", "teste_aceitacao/us4_test.txt"};
 		EasyAccept.main(args);
 	}
 	public Facade() { }
 
-	public void inicializa(double caixaAtual, double porcetagemCasa) {
+	public void inicializa(int caixaAtual, double porcetagemCasa) {
 		this.controle = new ControleSistema(porcetagemCasa, caixaAtual);
 
 	}
@@ -37,11 +39,9 @@ public class Facade {
 		return this.controle.exibirTodosCenarios();
 	}
 
-	//TODO posos alterar o tipo de previsao para Boolean, logo o main seria responsável por tratar a entrada
 	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao){
 		this.controle.adicionarApostaCenario(cenario,apostador,valor,previsao);
 	}
-
 
 	public int valorTotalDeApostas(int numCenario){ return this.controle.retornarValorTotalApostas(numCenario); }
 
@@ -51,6 +51,17 @@ public class Facade {
 
 	public String exibeApostas(int numCenario){ return this.controle.exibirApostas(numCenario); }
 
+    public void fecharAposta(int numCenario, boolean resultadoCenario){
+        this.controle.fecharAposta(numCenario,resultadoCenario);
+    }
+
+    public int getCaixaCenario(int numCenario){
+	    return this.controle.getCaixaCenario(numCenario);
+    }
+
+    public int getTotalRateioCenario(int numCenario){
+        return this.controle.getTotalRateioCenario(numCenario);
+    }
 
 
 

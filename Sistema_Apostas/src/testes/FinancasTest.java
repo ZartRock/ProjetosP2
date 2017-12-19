@@ -4,6 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 import sistema.Financas;
 
+/**
+ * Classe reponsável por testar "Financas"
+ */
 public class FinancasTest {
     static private Financas financeiro;
     @Before

@@ -57,24 +57,30 @@ public class Cenario {
 		return valorTotal;
 	}
 
-	public double valorRecolhido(){
-	    double valorRecolhido = 0;
+	public int valorRecolhido(){
+	    int valorRecolhidoCentavos = 0;
 
 	    for (Aposta aposta : this.conjuntoApostas){
 
 	        if ((this.resultadoCenario == true && aposta.getPrevisao() == false)
                     || (this.resultadoCenario == false && aposta.getPrevisao() == true)){
 
-                valorRecolhido += aposta.getQtnAposta();
+                valorRecolhidoCentavos += aposta.getQtnAposta();
 
             }
 
         }
 
-        return valorRecolhido;
+        return valorRecolhidoCentavos;
     }
 
-	//TODO falta a porcaria de fechar cenario
+	public void finalizarCenario(boolean resultadoCenario) throws Exception {
+		if (this.estaTerminado == true){
+		    throw new Exception("Erro ao fechar aposta: Cenario ja esta fechado");
+        }
+	    this.resultadoCenario = resultadoCenario;
+		this.estaTerminado = true;
+	}
 
 
 	public String toString(int numeracao){
@@ -107,4 +113,17 @@ public class Cenario {
 
         return caixaTotal;
     }
+
+
+/*	public static void main(String[] args) {
+		Cenario c = new Cenario("O ceu vai chover");
+		Aposta a = new Aposta("a",100, "VAI ACONTECER");
+		Aposta b = new Aposta("b",50, "N VAI ACONTECER");
+		c.adicionarAposta(a);
+		c.adicionarAposta(b);
+		c.adicionarAposta(b);
+		c.adicionarAposta(b);
+		c.finalizarCenario(true);
+		System.out.println(c.valorRecolhido() / 100);
+	}*/
 }

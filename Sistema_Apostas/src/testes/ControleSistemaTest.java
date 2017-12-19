@@ -4,6 +4,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import sistema.ControleSistema;
 
+/**
+ * Classe reponsável por fazer os testes de "ControleSistema".
+ */
 public class ControleSistemaTest {
 
 

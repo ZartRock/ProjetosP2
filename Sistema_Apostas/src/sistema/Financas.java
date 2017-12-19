@@ -1,22 +1,23 @@
 package sistema;
 
 public class Financas {
-	private double porcetagemCasa, caixaAtual;
+	private double porcetagemCasa;
+	private int caixaAtualCentavos;
 	
-	public Financas(double porcetagemCasa, double caixaAtual){
+	public Financas(double porcetagemCasa, int caixaAtual){
 		tratarExcecoesCronstutor(porcetagemCasa, caixaAtual);
 		
 		this.porcetagemCasa = porcetagemCasa;
-		this.caixaAtual = caixaAtual;
+		this.caixaAtualCentavos = caixaAtual;
 	}
 	
-	public double getCaixaAtual(){ return this.caixaAtual; }
+	public int getCaixaAtualCentavos(){ return this.caixaAtualCentavos; }
 
 	public double getPorcetagemCasa(){ return this.porcetagemCasa; }
 
-	public void adicionarValorCaixa(double valor){ this.caixaAtual += valor;}
+	public void adicionarValorCaixa(int valor){ this.caixaAtualCentavos += valor;}
 
-	private void tratarExcecoesCronstutor(double porcetagemCasa, double caixaAtual){
+	private void tratarExcecoesCronstutor(double porcetagemCasa, int caixaAtual){
 		if (caixaAtual < 0) {
 			throw new IllegalArgumentException("Erro na inicializacao: Caixa nao pode ser inferior a 0");
 		}

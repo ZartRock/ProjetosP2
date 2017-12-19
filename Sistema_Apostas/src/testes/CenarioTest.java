@@ -37,7 +37,7 @@ public class CenarioTest {
 
     @Test
     public void adicionarApostaSucesso(){
-        Aposta aposta = new Aposta("Pessoa",100,true);
+        Aposta aposta = new Aposta("Pessoa",100,"VAI ACONTECER");
         this.cenarioExemplo.adicionarAposta(aposta);
         //TODO posso finalizar aqui ou não implementar
     }
@@ -54,7 +54,7 @@ public class CenarioTest {
 
 
     private void adicionarNumApostas(Cenario c, int numVezes){
-        Aposta aposta = new Aposta("Nome",1,true);
+        Aposta aposta = new Aposta("Nome",1,"VAI ACONTECER");
         for (int i = 0; i < numVezes; i++){
             c.adicionarAposta(aposta);
         }
