@@ -33,7 +33,7 @@ public class ControleSistema {
 		String[] mensagensExcecoes = {"Erro no cadastro de aposta: Cenario invalido",
 							  		  "Erro no cadastro de aposta: Cenario nao cadastrado"};
 
-	    tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes, false);
+	    tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes);
 
 		int numCenario = numFornecidoUsuario - 1;
 	    Aposta aposta = new Aposta(nomeApostador, qtnAposta, previsaoString);
@@ -46,7 +46,7 @@ public class ControleSistema {
 		String[] mensagensExcecoes = {"Erro na consulta de cenario: Cenario invalido",
 				                      "Erro na consulta de cenario: Cenario nao cadastrado"};
 
-		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes, false);
+		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes);
 
         int numCenario = numFornecidoUsuario - 1;
 	    return this.cenarios.get(numCenario).toString(numFornecidoUsuario);
@@ -65,7 +65,7 @@ public class ControleSistema {
 		String[] mensagensExcecoes = {"Erro na consulta do total de apostas: Cenario invalido",
 							          "Erro na consulta do total de apostas: Cenario nao cadastrado"};
 
-		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes, false);
+		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes);
 
 		int numCenario = numFornecidoUsuario - 1;
 	    return this.cenarios.get(numCenario).getNumApostas();
@@ -79,7 +79,7 @@ public class ControleSistema {
 		String[] mensagensExcecoes = {"Erro na consulta do valor total de apostas: Cenario invalido",
                                       "Erro na consulta do valor total de apostas: Cenario nao cadastrado"};
 
-		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes, false);
+		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes);
 
 	
 	    return (int) this.cenarios.get(numFornecidoUsuario - 1).getValorTotalApostas();
@@ -89,7 +89,7 @@ public class ControleSistema {
 		String[] mensagensExcecoes = {"Erro na consulta do caixa do cenario: Cenario invalido",
 				"Erro na consulta do caixa do cenario: Cenario nao cadastrado"};
 
-		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes, false);
+		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes);
 		int numCenario = numFornecidoUsuario - 1;
 
 		Cenario cenario = this.cenarios.get(numCenario);
@@ -104,10 +104,9 @@ public class ControleSistema {
 
     public void fecharAposta(int numFornecidoUsuario, boolean ocorreu){
 		String[] mensagensExcecoes = {"Erro ao fechar aposta: Cenario invalido",
-				"Erro ao fechar aposta: Cenario nao cadastrado",
-                "Erro ao fechar aposta: Cenario ja esta fechado"};
+				"Erro ao fechar aposta: Cenario nao cadastrado"};
 
-		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes, true);
+		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes);
 
 		int numCenario = numFornecidoUsuario - 1;
 		Cenario cenario = this.cenarios.get(numCenario);
@@ -126,10 +125,9 @@ public class ControleSistema {
     public int getTotalRateioCenario(int numFornecidoUsuario){
 		String[] mensagensExcecoes = {
 		            "Erro na consulta do total de rateio do cenario: Cenario invalido",
-                    "Erro na consulta do total de rateio do cenario: Cenario nao cadastrado",
-                    "Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto" };
+                    "Erro na consulta do total de rateio do cenario: Cenario nao cadastrado" };
 
-		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes, false);
+		tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes);
 
         int numCenario = numFornecidoUsuario - 1;
 
@@ -145,7 +143,7 @@ public class ControleSistema {
         String[] mensagensExcecoes = {"Erro ao fechar aposta: Cenario invalido",
                                       "Erro ao fechar aposta: Cenario nao cadastrado"};
 
-        tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes, false);
+        tratarErroSelecionarCenario(numFornecidoUsuario, mensagensExcecoes);
         int numCenario = numFornecidoUsuario - 1;
         Cenario cenarioEscolhido = this.cenarios.get(numCenario);
 
@@ -156,13 +154,9 @@ public class ControleSistema {
     }
 
 
-	private void tratarErroSelecionarCenario(int numFornecidoUsuario, String[] mensagens, boolean esperadoLancarExcessao){
+	private void tratarErroSelecionarCenario(int numFornecidoUsuario, String[] mensagens){
 		tratarErrosCenarioInvalido(numFornecidoUsuario, mensagens[0]);
-		tratarErrosCenarioNaoCadastrado(numFornecidoUsuario, mensagens[1]);
-		if (mensagens.length > 3){
 
-		    tratarErrosCenariosTerminados(numFornecidoUsuario,mensagens[2],esperadoLancarExcessao);
-        }
 	}
 
 
@@ -172,23 +166,5 @@ public class ControleSistema {
 		}
 	}
 
-	private void tratarErrosCenarioNaoCadastrado(int numFornecidoUsuario, String mensagem){
-		if (numFornecidoUsuario > this.cenarios.size()){
-			throw new IllegalArgumentException(mensagem);
-		}
-	}
 
-
-	private void tratarErrosCenariosTerminados(int numFornecidoUsuario, String mensagem, boolean esperado){
-        Boolean cenarioAlvo =  this.cenarios.get(numFornecidoUsuario + 1).getEstaTerminado();
-	    if (!esperado){
-            cenarioAlvo = !cenarioAlvo;
-        }
-
-        if (cenarioAlvo){
-	        throw new IllegalArgumentException(mensagem);
-        }
-
-
-    }
 }
