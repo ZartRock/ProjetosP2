@@ -31,7 +31,7 @@ public class Coisa {
         	String operacao = input.nextLine();
         	
         	switch (operacao) {
-			case "CRIAR ALUNO":
+			case "CRIAR_ALUNO":
 				System.out.println("Digite o nome Aluno:");
 				String nome = input.nextLine();
 				Aluno fulano = new Aluno(nome);
