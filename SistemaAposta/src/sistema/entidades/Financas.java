@@ -1,4 +1,4 @@
-package sistema;
+package sistema.entidades;
 
 /**
  * Repsenta o finanças do sistema.

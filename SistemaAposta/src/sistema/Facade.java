@@ -13,23 +13,25 @@ public class Facade {
 
 	public static void main(String[] args) {
 
-		args = new String[] { "sistema.Facade", "teste_aceitacao/us1_test.txt",
-				"teste_aceitacao/us2_test.txt", "teste_aceitacao/us3_test.txt",
-				"teste_aceitacao/us4_test.txt" };
+		args = new String[] { "sistema.Facade", 
+							"teste_aceitacao/us1_test.txt",
+							"teste_aceitacao/us2_test.txt", 
+							"teste_aceitacao/us3_test.txt",
+							"teste_aceitacao/us4_test.txt" };
 		EasyAccept.main(args);
 	}
 
 	/**
 	 * Realiza a construção do objeto
 	 */
-	public Facade() {
-	}
+	public Facade() { }
 
 	/**
 	 * Realiza a operação de iniciar de inicial sistema
 	 * 
 	 * @param caixaAtual
 	 *            caixa inicial do sistema
+	 *            
 	 * @param porcetagemCasa
 	 *            porcentagem cobrada nas aposta pela casa.
 	 */

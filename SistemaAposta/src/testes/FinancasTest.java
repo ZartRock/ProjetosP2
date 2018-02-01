@@ -2,7 +2,8 @@ package testes;
 
 import org.junit.Before;
 import org.junit.Test;
-import sistema.Financas;
+
+import sistema.entidades.Financas;
 
 import static org.junit.Assert.assertEquals;
 

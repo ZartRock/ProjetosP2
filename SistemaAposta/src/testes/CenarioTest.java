@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import sistema.Aposta;
-import sistema.Cenario;
+import sistema.entidades.Aposta;
+import sistema.entidades.Cenario;
 
 /**
  * Classe reponsável por fazer os testes na classe "sistema.Aposta".

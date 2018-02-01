@@ -1,4 +1,4 @@
-package sistema;
+package sistema.entidades;
 
 import java.util.ArrayList;
 
