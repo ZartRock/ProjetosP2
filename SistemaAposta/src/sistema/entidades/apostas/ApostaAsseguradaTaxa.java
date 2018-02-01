@@ -10,8 +10,8 @@ public class ApostaAsseguradaTaxa extends Aposta{
 		this.taxa = taxa;
 	}
 	
-	
-	public pagarSeguro() {
+	//TODO: Ṕara fazer
+	public int pagarSeguro() {
 		
 	}
 
