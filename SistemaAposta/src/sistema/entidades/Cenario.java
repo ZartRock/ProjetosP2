@@ -2,6 +2,8 @@ package sistema.entidades;
 
 import java.util.ArrayList;
 
+import sistema.entidades.apostas.Aposta;
+
 /**
  * Classe que representa um cenário de uma aposta no sistema.
  * 
@@ -10,10 +12,10 @@ import java.util.ArrayList;
  */
 public class Cenario {
 
-	private String descricao;
-	private ArrayList<Aposta> conjuntoApostas;
-	private boolean estaTerminado;
-	private boolean resultadoCenario;
+	protected String descricao;
+	protected ArrayList<Aposta> conjuntoApostas;
+	protected boolean estaTerminado;
+	protected boolean resultadoCenario;
 
 	/**
 	 * Responsável pela construção do objeto
@@ -187,7 +189,7 @@ public class Cenario {
 	}
 
 	/**
-	 * Retoar o valor total do caixa fornecido no cenário.
+	 * Retonar o valor total do caixa fornecido no cenário.
 	 * 
 	 * @return retorna uma double que representa este valor.
 	 */

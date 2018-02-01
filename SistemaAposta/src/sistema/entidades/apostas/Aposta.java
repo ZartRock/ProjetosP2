@@ -1,4 +1,4 @@
-package sistema.entidades;
+package sistema.entidades.apostas;
 
 /**
  * Classe que representa uma apsota no sistema.
@@ -8,9 +8,9 @@ package sistema.entidades;
  */
 public class Aposta {
 
-	private String nomeApostador;
-	private double qtnAposta;
-	private boolean previsao; 
+	protected String nomeApostador;
+	protected double qtnAposta;
+	protected boolean previsao; 
 
 	/**
 	 * Metodo responsável construção de um objeto do tipo Aposta.
@@ -49,18 +49,6 @@ public class Aposta {
 		return this.previsao;
 	}
 
-	/**
-	 * Responsável por retorna um representação da aposta em formato de texto.
-	 * 
-	 * @return uma váriavel String que representa a Aposta.
-	 */
-	@Override
-	public String toString() {
-		String resultadoEsperado = retornaResultadoEsperadoString();
-
-		return String.format("%s - %f - %s", this.nomeApostador,
-				this.qtnAposta, resultadoEsperado);
-	}
 
 	/**
 	 * Função que agrupa todas as exceções contidas na construção os objetos do
@@ -73,7 +61,7 @@ public class Aposta {
 	 * @param previsaoString
 	 *            Representa o resultado do cenário que o apostador previu.
 	 */
-	private void tratarExcecoesConstrutor(String nome, double qtn,
+	protected void tratarExcecoesConstrutor(String nome, double qtn,
 			String previsaoString) {
 		if (nome.equals(null)) {
 			throw new NullPointerException("Nome nulo");
@@ -101,7 +89,7 @@ public class Aposta {
 	 * @param previsaoString
 	 * @return
 	 */
-	private boolean retornarValorPrevisao(String previsaoString) {
+	protected boolean retornarValorPrevisao(String previsaoString) {
 		if (previsaoString.equals("VAI ACONTECER")) {
 			return true;
 		} else if (previsaoString.equals("N VAI ACONTECER")) {
@@ -117,7 +105,7 @@ public class Aposta {
 	 * 
 	 * @return Uma Boolean representando a antiga string descrita pelo usuário.
 	 */
-	private String retornaResultadoEsperadoString() {
+	protected String retornaResultadoEsperadoString() {
 		String resultado = "";
 		if (this.previsao) {
 			resultado = "VAI ACONTECER";

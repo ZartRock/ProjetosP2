@@ -2,9 +2,10 @@ package sistema;
 
 import java.util.ArrayList;
 
-import sistema.entidades.Aposta;
 import sistema.entidades.Cenario;
+import sistema.entidades.CenarioBonus;
 import sistema.entidades.Financas;
+import sistema.entidades.apostas.Aposta;
 
 /**
  * Classe responsável por fazer todo o controle do sistema
@@ -46,7 +47,14 @@ public class ControleSistema {
 	public void cadastrarCenario(String descricaoCenario) {
 		this.cenarios.add(new Cenario(descricaoCenario));
 	}
-
+	
+	
+	//TODO: falta documentar
+	public void cadastrarCenarioBonus(String descricaoCenario, int bonus) {
+		this.cenarios.add(new CenarioBonus(descricaoCenario, bonus / 100));
+	}
+	
+	
 	/**
 	 * Retorna um número espeficico de um cenário com base na sua descrição
 	 * 

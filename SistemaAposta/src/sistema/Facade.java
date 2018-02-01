@@ -58,7 +58,10 @@ public class Facade {
 	public void cadastrarCenario(String descricaoCenario) {
 		this.controle.cadastrarCenario(descricaoCenario);
 	}
-
+	
+	public void cadastrarCenario(String descricaoCenario, int bonus) {
+		
+	}
 	/**
 	 * Exibe um cenário espeficico
 	 * 

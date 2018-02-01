@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import sistema.entidades.Aposta;
+import sistema.entidades.apostas.Aposta;
 
 /**
  * Classe responsável por fazer os testes de "Aposta";
