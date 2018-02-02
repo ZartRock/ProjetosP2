@@ -1,19 +1,20 @@
 package sistema.entidades.apostas;
 
-public class ApostaSeguraValor extends Aposta {
+public class ApostaSeguraValor {
 	
-	final String TIPO = "Valor";
 	int valor;
 	
-	public ApostaSeguraValor(String nomeApostador, double qtnAposta, String previsaoString, int valor) {
-		super(nomeApostador, qtnAposta, previsaoString);
+	public ApostaSeguraValor( int valor) {
 		this.valor = valor;
 	}
-	
-	public int pagarSeguro() {
-		return this.valor;
+
+	public int getValor() {
+		return valor;
 	}
-	
-	
+
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
+
 	
 }

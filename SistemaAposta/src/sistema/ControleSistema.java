@@ -7,6 +7,7 @@ import sistema.entidades.CenarioBonus;
 import sistema.entidades.Financas;
 import sistema.entidades.apostas.Aposta;
 import sistema.entidades.apostas.ApostaNormal;
+import sistema.entidades.apostas.ApostaTipo;
 
 /**
  * Classe responsável por fazer todo o controle do sistema

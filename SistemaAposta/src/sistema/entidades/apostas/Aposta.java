@@ -116,7 +116,18 @@ public class Aposta {
 		return resultado;
 	}
 	
+	/**
+	 * Responsável por retorna um representação da aposta em formato de texto.
+	 * 
+	 * @return uma váriavel String que representa a Aposta.
+	 */
 	
-	public abstract int pagarSeguro();
+	@Override
+	public String toString() {
+		String resultadoEsperado = retornaResultadoEsperadoString();
 
+		return String.format("%s - %f - %s", this.nomeApostador,
+				this.qtnAposta, resultadoEsperado);
+	}
+	
 }
