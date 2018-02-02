@@ -52,6 +52,15 @@ public class Financas {
 	public void adicionarValorCaixa(int valor) {
 		this.caixaAtualCentavos += valor;
 	}
+	
+	//TODO: lançar uma exceção para valor negativo ou maior que o caixa atual.
+	
+	public void retirarValorCaixa(int valor) {
+		this.caixaAtualCentavos -= valor;
+	}
+	
+	
+	
 
 	/**
 	 * Realiza a operação de Lanças as exceções do construtor.

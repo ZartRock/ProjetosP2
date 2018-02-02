@@ -115,5 +115,8 @@ public class Aposta {
 
 		return resultado;
 	}
+	
+	
+	public abstract int pagarSeguro();
 
 }

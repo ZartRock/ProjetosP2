@@ -59,9 +59,18 @@ public class Facade {
 		this.controle.cadastrarCenario(descricaoCenario);
 	}
 	
+	
+	/**
+	 * Realiza o cadastro de um cenário com bónus.
+	 * @param descricaoCenario
+	 * 			é a descrição(contexto) do cenário para ocorrer as apostas.
+	 * @param bonus
+	 * 			valor para estimular
+	 */	
 	public void cadastrarCenario(String descricaoCenario, int bonus) {
-		
+		this.controle.cadastrarCenarioBonus(descricaoCenario, bonus);
 	}
+	
 	/**
 	 * Exibe um cenário espeficico
 	 * 

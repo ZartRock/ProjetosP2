@@ -1,18 +1,18 @@
 package sistema.entidades.apostas;
 
-public class ApostaAsseguradaTaxa extends Aposta{
+public class ApostaSeguraTaxa extends Aposta{
 	
 	float taxa;
 	final String TIPO = "TAXA";
 	
-	public ApostaAsseguradaTaxa(String nomeApostador, double qtnAposta, String previsaoString, float taxa) {
+	public ApostaSeguraTaxa(String nomeApostador, double qtnAposta, String previsaoString, float taxa) {
 		super(nomeApostador, qtnAposta, previsaoString);
 		this.taxa = taxa;
 	}
 	
 	//TODO: Ṕara fazer
 	public int pagarSeguro() {
-		
+		return (int) (this.taxa * super.qtnAposta);
 	}
 
 	public float getTaxa() {

@@ -6,6 +6,7 @@ import sistema.entidades.Cenario;
 import sistema.entidades.CenarioBonus;
 import sistema.entidades.Financas;
 import sistema.entidades.apostas.Aposta;
+import sistema.entidades.apostas.ApostaNormal;
 
 /**
  * Classe responsável por fazer todo o controle do sistema
@@ -51,7 +52,10 @@ public class ControleSistema {
 	
 	//TODO: falta documentar
 	public void cadastrarCenarioBonus(String descricaoCenario, int bonus) {
-		this.cenarios.add(new CenarioBonus(descricaoCenario, bonus / 100));
+		int valorCentavos = bonus * 100;
+		
+		this.financeiro.retirarValorCaixa(valorCentavos);
+		this.cenarios.add(new CenarioBonus(descricaoCenario, valorCentavos));
 	}
 	
 	
@@ -295,5 +299,12 @@ public class ControleSistema {
 
 	}
 
-
+	
+	
+	public static void main(String[] args) {
+		ControleSistema c = new ControleSistema(0.01, 20000);
+		c.cadastrarCenarioBonus("vida", 100);
+		System.out.println(c.getCaixaAtual());
+	}
+	
 }
