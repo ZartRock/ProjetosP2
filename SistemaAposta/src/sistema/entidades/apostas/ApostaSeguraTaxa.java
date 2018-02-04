@@ -2,14 +2,23 @@ package sistema.entidades.apostas;
 
 public class ApostaSeguraTaxa {
 	
-	float taxa;
+	double taxa;
 	
-	public ApostaSeguraTaxa(float taxa) {
+	public ApostaSeguraTaxa(double taxa) {
+		if (taxa <= 0) {
+			throw new IllegalArgumentException("Taxa não pode ser negativa");
+		}
 		this.taxa = taxa;
 	}
 
-	public float getTaxa() {
+	public double getTaxa() {
 		return taxa;
+	}
+	
+	@Override
+	public String toString(){
+	
+		return String.format("%.0f%%", this.taxa);
 	}
 	
 }

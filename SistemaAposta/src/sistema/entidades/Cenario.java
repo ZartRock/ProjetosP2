@@ -3,6 +3,7 @@ package sistema.entidades;
 import java.util.ArrayList;
 
 import sistema.entidades.apostas.Aposta;
+import sistema.entidades.apostas.ApostaTipo;
 
 /**
  * Classe que representa um cenário de uma aposta no sistema.
@@ -134,6 +135,12 @@ public class Cenario {
 		}
 
 		return valorRecolhidoCentavos;
+	}
+	
+	
+	public void alterarAposta(int numAposta, double valor){
+		ApostaTipo aposta = (ApostaTipo) this.conjuntoApostas.get(numAposta);
+		aposta.alterarValorSeguro(valor);
 	}
 
 	/**

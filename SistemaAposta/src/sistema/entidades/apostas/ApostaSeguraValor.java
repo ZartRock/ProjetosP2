@@ -2,12 +2,20 @@ package sistema.entidades.apostas;
 
 public class ApostaSeguraValor {
 	
-	int valor;
+	int valor; 
 	
-	public ApostaSeguraValor( int valor) {
+	public ApostaSeguraValor(int valor) {
+		if (valor <= 0) {
+			throw new IllegalArgumentException("Valor não pode ser negativa");
+		}
+		
 		this.valor = valor;
 	}
-
+	
+	public int pagarAposta(){
+		return valor;
+	}
+	
 	public int getValor() {
 		return valor;
 	}
@@ -17,4 +25,8 @@ public class ApostaSeguraValor {
 	}
 
 	
+	@Override
+	public String toString(){
+		return String.format("R$%d", valor);
+	}
 }
