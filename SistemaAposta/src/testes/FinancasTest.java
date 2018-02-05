@@ -79,7 +79,7 @@ public class FinancasTest {
     /**
      * Testa adicionar um valor negativo ao caixa.
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void adicionarValorNegativo(){
     	this.financeiro.adicionarValorCaixa(-5);
     	assertEquals(5,this.financeiro.getCaixaAtualCentavos());

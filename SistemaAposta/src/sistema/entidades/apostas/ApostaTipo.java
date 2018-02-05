@@ -28,7 +28,7 @@ public class ApostaTipo extends Aposta{
 	
 	public void alterarValorSeguro(double valor){
 		if (this.tipo.equals("TAXA")){
-			int valorInteiro = (int) (valor);
+			int valorInteiro = (int) valor;
 			this.seguro = new ApostaSeguraValor(valorInteiro);
 			this.tipo = "VALOR";
 		} else {

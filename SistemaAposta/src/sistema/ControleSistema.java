@@ -51,7 +51,7 @@ public class ControleSistema {
 	}
 	
 	
-	/**
+	/**	
 	 * Cadastrar um cenário com bonus no sistema.
 	 * @param descricaoCenario
 	 * 				representa a string de descrição do cenário.
@@ -59,8 +59,7 @@ public class ControleSistema {
 	 * @param bonusEmReais
 	 * 			represetna o valor do bonus em reais
 	 */
-	public void cadastrarCenarioBonus(String descricaoCenario, int bonusEmReais) {
-		int valorCentavos = bonusEmReais * 100;
+	public void cadastrarCenarioBonus(String descricaoCenario, int valorCentavos) {
 		
 		this.financeiro.retirarValorCaixa(valorCentavos);
 		this.cenarios.add(new CenarioBonus(descricaoCenario, valorCentavos));
@@ -138,8 +137,14 @@ public class ControleSistema {
 	}
 	
 	
-	public void alterarSeguro(int cenario, int numAposta, int valor){
+	
+	
+	public void alterarSeguroValor(int cenario, int numAposta, int valor){
 		this.cenarios.get(cenario).alterarAposta(numAposta, valor);
+	}
+	
+	public void alterarSeguroTaxa(int cenario, int numAposta, double taxa){
+		this.cenarios.get(cenario).alterarAposta(numAposta, taxa);
 	}
 	
 	
@@ -266,7 +271,7 @@ public class ControleSistema {
 		}
 
 		double valorCentavos = Math
-				.floor((cenario.valorRecolhido() - cenario.valorRecolhido() * financeiro.getPorcetagemCasa()));
+				.floor((cenario.getRateio() - cenario.valorRecolhido() * financeiro.getPorcetagemCasa()));
 
 		return (int) valorCentavos;
 	}

@@ -17,7 +17,9 @@ public class Facade {
 				"teste_aceitacao/us1_test.txt",
 				"teste_aceitacao/us2_test.txt", 
 				"teste_aceitacao/us3_test.txt",
-				"teste_aceitacao/us4_test.txt" };
+				"teste_aceitacao/us4_test.txt",
+				"teste_aceitacao/us5_test.txt",
+				"teste_aceitacao/us6_test.txt"};
 		EasyAccept.main(args);
 	}
 
@@ -194,11 +196,11 @@ public class Facade {
     	this.controle.adicionarApostaTaxa(cenario, apostador, valor, previsao, taxa, custo);
     }
     public void alterarSeguroValor(int cenario, int apostaAssegurada, int valor){
-    	this.controle.alterarSeguro(cenario, apostaAssegurada, valor);
+    	this.controle.alterarSeguroValor(cenario, apostaAssegurada, valor);
     }
     
-    public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa){
-    	this.controle.alterarSeguro(cenario, apostaAssegurada, taxa);
+    public void alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa){
+    	this.controle.alterarSeguroTaxa(cenario, apostaAssegurada, taxa);
     }
 
 }

@@ -117,8 +117,7 @@ public class Cenario {
 	/**
 	 * Retorna o valor a ser recolhido com o fim do cenário
 	 * 
-	 * @return retorna um int que representa a soma de todos as apostas
-	 *         perdedoras;
+	 * @return retorna um int que representa a soma de todos as apostas perdedoras;
 	 */
 	public int valorRecolhido() {
 		int valorRecolhidoCentavos = 0;
@@ -136,9 +135,8 @@ public class Cenario {
 
 		return valorRecolhidoCentavos;
 	}
-	
-	
-	public void alterarAposta(int numAposta, double valor){
+
+	public void alterarAposta(int numAposta, double valor) {
 		ApostaTipo aposta = (ApostaTipo) this.conjuntoApostas.get(numAposta);
 		aposta.alterarValorSeguro(valor);
 	}
@@ -153,12 +151,16 @@ public class Cenario {
 	 */
 	public void finalizarCenario(boolean resultadoCenario) throws Exception {
 		if (this.estaTerminado == true) {
-			throw new Exception(
-					"Erro ao fechar aposta: Cenario ja esta fechado");
+			throw new Exception("Erro ao fechar aposta: Cenario ja esta fechado");
 		}
 		this.resultadoCenario = resultadoCenario;
 		this.estaTerminado = true;
 	}
+
+	/**
+	 * Retorna o rateio total de um cenário.
+	 */
+	public int getRateio() { return valorRecolhido(); }
 
 	/**
 	 * Retorna um string que contem a representação do Cenário
@@ -168,17 +170,7 @@ public class Cenario {
 	 * @return uma string que representa o cenário.
 	 */
 	public String toString(int numeracao) {
-		String estado = "";
-
-		if (this.estaTerminado == false) {
-			estado = "Nao finalizado";
-		} else if (this.resultadoCenario == true) {
-			estado = "Finalizado (ocorreu)";
-		} else {
-			estado = "Finalizado (n ocorreu)";
-		}
-
-		return String.format("%d - %s - %s", numeracao, this.descricao, estado);
+		return String.format("%d - %s - %s", numeracao, this.descricao, estadoCenario());
 	}
 
 	/**
@@ -190,8 +182,22 @@ public class Cenario {
 		if (descricao.trim().equals(null)) {
 			throw new NullPointerException("Descricao nula");
 		} else if (descricao.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de cenario: Descricao nao pode ser vazia");
+			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
+		}
+	}
+
+	/**
+	 * Retorna um string contendo o estado atual do cenário.
+	 * 
+	 * @return um String contendo o estado atual do cenário.
+	 */
+	private String estadoCenario() {
+		if (this.estaTerminado == false) {
+			return "Nao finalizado";
+		} else if (this.resultadoCenario == true) {
+			return "Finalizado (ocorreu)";
+		} else {
+			return "Finalizado (n ocorreu)";
 		}
 	}
 
