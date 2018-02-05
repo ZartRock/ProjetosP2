@@ -19,7 +19,6 @@ public class ApostaTest {
     /**
      * Iniciar uma objeto Aposta para ser ultilizado de exemplo para outros arquivos do sistema
      * @throws Exception
-     * TODO: Porque existe essa exceção??
      */
     @Before
     public void setUp() throws Exception {

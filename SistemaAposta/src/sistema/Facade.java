@@ -186,17 +186,19 @@ public class Facade {
 		return this.controle.getTotalRateioCenario(numCenario);
 	}
 	
-//    public void cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao,int valor, int custo){ 
-//    	this.controle.adicionarApostaEspecial(cenario, apostador, valor, previsao, "VALOR", valor, custoOperacional);
-//    }
-//    public void cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo){
-//    	this.controle.adicionarApostaEspecial(cenario, apostador, valor, previsao, "TAXA", taxa, custo);
-//    }
-//    public void alterarSeguroValor(int cenario, int apostaAssegurada, int valor){
-//    	this.controle.alterarSeguro(cenario, apostaAssegurada, valor);
-//    }
-//    public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa){
-//    	this.controle.alterarSeguro(cenario, apostaAssegurada, valor);
-//    }
+    public void cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao,int valorSegurado, int custo){ 
+    	this.controle.adicionarApostaValor(cenario, apostador, valor, previsao, valorSegurado, custo);
+    }
+    
+    public void cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo){
+    	this.controle.adicionarApostaTaxa(cenario, apostador, valor, previsao, taxa, custo);
+    }
+    public void alterarSeguroValor(int cenario, int apostaAssegurada, int valor){
+    	this.controle.alterarSeguro(cenario, apostaAssegurada, valor);
+    }
+    
+    public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa){
+    	this.controle.alterarSeguro(cenario, apostaAssegurada, taxa);
+    }
 
 }

@@ -50,17 +50,23 @@ public class Financas {
 	 *            Representa o valor a ser adicionado no caixa.
 	 */
 	public void adicionarValorCaixa(int valor) {
+		if(valor < 0) { 
+			throw new IllegalArgumentException("Não pode adicionar valores negativos"); }
+		
 		this.caixaAtualCentavos += valor;
 	}
 	
-	//TODO: lançar uma exceção para valor negativo ou maior que o caixa atual.
-	
+	/**
+	 * Representa a retirada de valor do caixa
+	 * @param valor
+	 * 			Representa um valor inteiro a ser retirado do caixa
+	 */
 	public void retirarValorCaixa(int valor) {
+		if (valor < 0) {
+			throw new IllegalArgumentException("Não pode retirar valores negativos"); }
+		
 		this.caixaAtualCentavos -= valor;
 	}
-	
-	
-	
 
 	/**
 	 * Realiza a operação de Lanças as exceções do construtor.

@@ -6,7 +6,7 @@ package sistema.entidades.apostas;
  * @author Áxel Medeiros
  * 
  */
-public abstract class Aposta {
+public class Aposta {
 
 	protected String nomeApostador;
 	protected double qtnAposta;

@@ -2,7 +2,16 @@ package sistema.entidades.apostas;
 
 public class ApostaNormal extends Aposta{
 	
-	
+	/**
+	 * Metodo responsável construção de um objeto do tipo ApostaNormal.
+	 * 
+	 * @param nomeApostador
+	 *            Refere-se ao nome do usuário que realizou a aposta.
+	 * @param qtnAposta
+	 *            Quantia a ser apostada.
+	 * @param previsaoString
+	 *            Representação em String da previsão do apostador.
+	 */
 	public ApostaNormal(String nomeApostador, double qtnAposta, String previsaoString) {
 		super(nomeApostador, qtnAposta, previsaoString);
 	}

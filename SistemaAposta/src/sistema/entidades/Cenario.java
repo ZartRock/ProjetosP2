@@ -6,7 +6,7 @@ import sistema.entidades.apostas.Aposta;
 import sistema.entidades.apostas.ApostaTipo;
 
 /**
- * Classe que representa um cenário de uma aposta no sistema.
+ * Classe que representa um cenário de apostas no sistema.
  * 
  * @author Áxel Medeiros
  * 
@@ -193,20 +193,6 @@ public class Cenario {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de cenario: Descricao nao pode ser vazia");
 		}
-	}
-
-	/**
-	 * Retonar o valor total do caixa fornecido no cenário.
-	 * 
-	 * @return retorna uma double que representa este valor.
-	 */
-	private double calculaFinancas() {
-		double caixaTotal = 0;
-		for (Aposta aposta : conjuntoApostas) {
-			caixaTotal += aposta.getQtnAposta();
-		}
-
-		return caixaTotal;
 	}
 
 }

@@ -1,11 +1,17 @@
 package sistema.entidades;
 
 import sistema.entidades.apostas.Aposta;
-
+/**
+ * Classe que representa um cenário de apostas no sistema.
+ * 
+ * @author Áxel Medeiros
+ *
+ */
 public class CenarioBonus extends Cenario{
 	// TODO: FALTA DOCUMENTAR ESTA CLASSE
 	int bonus;
 
+	
 	public CenarioBonus(String descricao, int bonus) {
 		super(descricao);
 		this.bonus = bonus;
@@ -28,6 +34,7 @@ public class CenarioBonus extends Cenario{
 
 		return valorRecolhidoCentavos;
 	}
+	
 	
 	@Override
 	public String toString(int numeracao) {

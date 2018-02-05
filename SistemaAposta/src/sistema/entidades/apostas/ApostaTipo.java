@@ -1,7 +1,5 @@
 package sistema.entidades.apostas;
 
-import java.util.ArrayList;
-
 /**
  * Representa uma aposta com seguro.
  * @author Áxel Medeiros
@@ -38,6 +36,9 @@ public class ApostaTipo extends Aposta{
 			this.tipo = "TAXA";
 		}
 	}
+	
+	// para mim, deveria ter pagar seguro aqui, mas como não 
+	//sei fazer isso sem gambiarra, logo....
 	
 	@Override
 	public String toString() {

@@ -111,15 +111,15 @@ public class ControleSistema {
 		return true;
 	}
 	
-	public void adicionarApostaEspecial(int cenario, String apostador, int valor,
-			String previsao, String tipoSeguro, int valorSegurado, int custoOperacional){
-		
-		this.financeiro.adicionarValorCaixa(custoOperacional);
-		
-		ApostaTipo aposta = new ApostaTipo(apostador, valor, previsao, tipoSeguro, valorSegurado);
-		this.cenarios.get(cenario).adicionarAposta(aposta);
+	public void adicionarApostaTaxa(int cenario, String apostador, int qtnAposta, String previsaoString,double taxa, int custo){
+		ApostaTipo apostaTaxa = new ApostaTipo(apostador, qtnAposta, previsaoString, "TAXA", taxa);
+		this.cenarios.get(cenario).adicionarAposta(apostaTaxa);
 	}
 	 
+	public void adicionarApostaValor(int cenario, String apostador, int qtnAposta, String previsaoString,int valorSeguradoInt, int custo){
+		ApostaTipo aposta = new ApostaTipo(apostador, qtnAposta, previsaoString, "VALOR", valorSeguradoInt);
+		this.cenarios.get(cenario).adicionarAposta(aposta);
+	}
 
 	/**
 	 * Retorna a representação de um cenário em String.
@@ -289,18 +289,6 @@ public class ControleSistema {
 		int valor = (int) (cenarioEscolhido.valorRecolhido() * this.financeiro.getPorcetagemCasa());
 		this.financeiro.adicionarValorCaixa(valor);
 
-	}
-
-	
-	
-	public static void main(String[] args) {
-		ControleSistema c = new ControleSistema(0.01, 20000);
-		c.cadastrarCenarioBonus("vida", 100);
-		c.adicionarApostaEspecial(0, "axel", 1000, "VAI ACONTECER", "TAXA", 5, 10);
-		System.out.println(c.exibirCenario(1));
-		System.out.println(c.exibirApostas(1));
-		c.alterarSeguro(0, 0, 100);
-		System.out.println(c.exibirApostas(1));
 	}
 	
 }
