@@ -12,6 +12,8 @@ public class ApostaTipo extends Aposta{
 	
 	public ApostaTipo(String nomeApostador, double qtnAposta, String previsaoString, String tipo, double valor) {
 		super(nomeApostador, qtnAposta, previsaoString);
+		
+		
 		if (tipo.equals("TAXA")) {
 			this.seguro = new ApostaSeguraTaxa(valor);
 			this.tipo = "TAXA";
@@ -25,20 +27,23 @@ public class ApostaTipo extends Aposta{
 		
 	}
 	
-	
-	public void alterarValorSeguro(double valor){
-		if (this.tipo.equals("TAXA")){
-			int valorInteiro = (int) valor;
-			this.seguro = new ApostaSeguraValor(valorInteiro);
-			this.tipo = "VALOR";
-		} else {
-			this.seguro = new ApostaSeguraTaxa(valor);
-			this.tipo = "TAXA";
-		}
+	public void alterarParaValor(int valor){
+		this.seguro = new ApostaSeguraValor(valor);
+		this.tipo = "VALOR";
+	}
+
+	public void alterarParaTaxa(double taxa) {
+		this.seguro = new ApostaSeguraTaxa(taxa);
+		this.tipo = "TAXA";
 	}
 	
 	// para mim, deveria ter pagar seguro aqui, mas como não 
 	//sei fazer isso sem gambiarra, logo....
+
+
+	public String getTipo() {
+		return tipo;
+	}
 	
 	@Override
 	public String toString() {
@@ -46,7 +51,4 @@ public class ApostaTipo extends Aposta{
 		return String.format("%s - R$%.2f - %s - ASSEGURADA (%s) - %s", super.nomeApostador,
 				super.qtnAposta, previsao, this.tipo, this.seguro.toString());
 	}
-	
-	
-	
 }

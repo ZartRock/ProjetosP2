@@ -18,9 +18,9 @@ public class ExcecoesControle {
 	 *            espeficicas para cada exceção.
 	 */
 	private void tratarErroSelecionarCenario(int numFornecidoUsuario, int numCenarios,
-			String[] mensagens) {
-		cenarioInvalido(numFornecidoUsuario, mensagens[0]);
-		cenarioNaoCadastrado(numFornecidoUsuario, numCenarios, mensagens[1]);
+			String nomeErro) {
+		cenarioInvalido(numFornecidoUsuario, nomeErro);
+		cenarioNaoCadastrado(numFornecidoUsuario, numCenarios, nomeErro);
 	}
 	
 	
@@ -34,9 +34,9 @@ public class ExcecoesControle {
 	 * @param mensagem
 	 *            representa a mensagem a ser exibida pelo lançamento do erro
 	 */
-	private void cenarioInvalido(int numFornecidoUsuario, String mensagem) {
+	private void cenarioInvalido(int numFornecidoUsuario, String nome) {
 		if (numFornecidoUsuario < 1) {
-			throw new IllegalArgumentException(mensagem);
+			throw new IllegalArgumentException(nome + ": Cenario invalido");
 		}
 	}
 
@@ -57,80 +57,67 @@ public class ExcecoesControle {
 	private void cenarioNaoCadastrado(int numFornecidoUsuario, int numCenario,
 			String mensagem) {
 		if (numFornecidoUsuario > numCenario) {
-			throw new IllegalArgumentException(mensagem);
+			throw new IllegalArgumentException(mensagem + ": Cenario nao cadastrado");
 		}
 	}
 	
 	
-	
 	public void adicionarApostaCenarioExcecoes(int numFornecidoUsuario, int numCenarios){
-		String[] mensagensExcecoes = { 
-				"Erro no cadastro de aposta: Cenario invalido",
-				"Erro no cadastro de aposta: Cenario nao cadastrado" };
-		
-		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, mensagensExcecoes);
-
+		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro no cadastro de aposta");
 	}
 	
 	
 	public void exibirCenarioExcessoes(int numFornecidoUsuario, int numCenarios){
-		String[] mensagensExcecoes = { 
-				"Erro na consulta de cenario: Cenario invalido",
-				"Erro na consulta de cenario: Cenario nao cadastrado" };
-		
-		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, mensagensExcecoes);
+		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro na consulta de cenario");
 		
 	}
 	
-	
 	public void retornarNumApostaCenarioExcecoes(int numFornecidoUsuario, int numCenarios){
-		String[] mensagensExcecoes = { 
-				"Erro na consulta do total de apostas: Cenario invalido",
-				"Erro na consulta do total de apostas: Cenario nao cadastrado" };
-		
-		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, mensagensExcecoes);
+		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro na consulta do total de apostas");
 	}
 	
 	public void retornarValorTotalApostasExcecoes(int numFornecidoUsuario, int numCenarios){
-		String[] mensagensExcecoes = { 
-				"Erro na consulta do valor total de apostas: Cenario invalido",
-				"Erro na consulta do valor total de apostas: Cenario nao cadastrado" };
-
-		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, mensagensExcecoes);
-
+		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro na consulta do valor total de apostas");
 	}
 	
-	
 	public void getCaixaCenarioExcecoes(int numFornecidoUsuario, int numCenarios){
-		String[] mensagensExcecoes = { 
-				"Erro na consulta do caixa do cenario: Cenario invalido",
-				"Erro na consulta do caixa do cenario: Cenario nao cadastrado" };
-		
-		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, mensagensExcecoes);
+		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro na consulta do caixa do cenario");
 	}
 	
 	
 	public void fecharApostaExcecoes(int numFornecidoUsuario, int numCenarios){
-		String[] mensagensExcecoes = { 
-				"Erro ao fechar aposta: Cenario invalido",
-				"Erro ao fechar aposta: Cenario nao cadastrado" };
-		
-		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, mensagensExcecoes);
+		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro ao fechar aposta");
 	}
 	
 	public void fecharCenarioExcecoes(int numFornecidoUsuario, int numCenarios){
-		String[] mensagensExcecoes = { 
-				"Erro ao fechar aposta: Cenario invalido",
-				"Erro ao fechar aposta: Cenario nao cadastrado" };
-		
-		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, mensagensExcecoes);
+		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro ao fechar aposta");
 	}
 	
 	public void getTotalRateioCenarioExcecoes(int numFornecidoUsuario, int numCenarios){
-		String[] mensagensExcecoes = { 
-				"Erro na consulta do total de rateio do cenario: Cenario invalido",
-				"Erro na consulta do total de rateio do cenario: Cenario nao cadastrado" };
-		
-		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, mensagensExcecoes);
+		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro na consulta do total de rateio do cenario");
 	}
+	
+	// ------------------------------------ ---------------------------------------------------------//
+	public void apostaExcecoes(String nome, double qtn,
+			String previsaoString, String nomeErro) {
+		
+		if (nome.equals(null)) {
+			throw new NullPointerException("Nome nulo");
+		}
+
+		if (nome.trim().isEmpty()) {
+			throw new IllegalArgumentException(
+					nomeErro + ": Apostador nao pode ser vazio ou nulo");
+		} else if (qtn <= 0) {
+			throw new IllegalArgumentException(
+					nomeErro + ": Valor nao pode ser menor ou igual a zero");
+		}
+
+		if (previsaoString.trim().equals("") || previsaoString.equals(null)) {
+			throw new IllegalArgumentException(
+					nomeErro + ": Previsao nao pode ser vazia ou nula");
+		}
+	}
+	
+	
 }

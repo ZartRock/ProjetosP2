@@ -18,7 +18,7 @@ public class ApostaSeguraTaxa{
 	@Override
 	public String toString(){
 	
-		return String.format("%.0f%%", this.taxa);
+		return String.format("%.0f%%", this.taxa * 100);
 	}
 	
 }

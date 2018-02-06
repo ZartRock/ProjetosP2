@@ -24,7 +24,7 @@ public class Aposta {
 	 */
 
 	public Aposta(String nomeApostador, double qtnAposta, String previsaoString) {
-		tratarExcecoesConstrutor(nomeApostador, qtnAposta, previsaoString);
+		//tratarExcecoesConstrutor(nomeApostador, qtnAposta, previsaoString);
 
 		this.nomeApostador = nomeApostador;
 		this.qtnAposta = qtnAposta;
@@ -61,7 +61,7 @@ public class Aposta {
 	 * @param previsaoString
 	 *            Representa o resultado do cenário que o apostador previu.
 	 */
-	protected void tratarExcecoesConstrutor(String nome, double qtn,
+	private void tratarExcecoesConstrutor(String nome, double qtn,
 			String previsaoString) {
 		if (nome.equals(null)) {
 			throw new NullPointerException("Nome nulo");

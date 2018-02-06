@@ -7,7 +7,6 @@ package sistema.entidades;
  *
  */
 public class CenarioBonus extends Cenario{
-	// TODO: FALTA DOCUMENTAR ESTA CLASSE
 	int bonus;
 
 	/**

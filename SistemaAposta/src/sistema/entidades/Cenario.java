@@ -136,9 +136,14 @@ public class Cenario {
 		return valorRecolhidoCentavos;
 	}
 
-	public void alterarAposta(int numAposta, double valor) {
+	public void alterarApostaValor(int numAposta, int valor) {
 		ApostaTipo aposta = (ApostaTipo) this.conjuntoApostas.get(numAposta);
-		aposta.alterarValorSeguro(valor);
+		aposta.alterarParaValor(valor);
+	}
+	
+	public void alterarApostaTaxa(int numAposta, double taxa) {
+		ApostaTipo aposta = (ApostaTipo) this.conjuntoApostas.get(numAposta);
+		aposta.alterarParaTaxa(taxa);
 	}
 
 	/**

@@ -60,7 +60,6 @@ public class ControleSistema {
 	 * 			represetna o valor do bonus em reais
 	 */
 	public void cadastrarCenarioBonus(String descricaoCenario, int valorCentavos) {
-		
 		this.financeiro.retirarValorCaixa(valorCentavos);
 		this.cenarios.add(new CenarioBonus(descricaoCenario, valorCentavos));
 	}
@@ -100,9 +99,9 @@ public class ControleSistema {
 	 */
 	public boolean adicionarApostaCenario(int numFornecidoUsuario, String nomeApostador, double qtnAposta,
 			String previsaoString) {
-
 		this.excecoes.adicionarApostaCenarioExcecoes(numFornecidoUsuario, this.cenarios.size());
-
+		this.excecoes.apostaExcecoes(nomeApostador, qtnAposta, previsaoString, "Erro no cadastro de aposta");
+		
 		int numCenario = numFornecidoUsuario - 1;
 		ApostaNormal aposta = new ApostaNormal(nomeApostador, qtnAposta, previsaoString);
 
@@ -111,11 +110,15 @@ public class ControleSistema {
 	}
 	
 	public void adicionarApostaTaxa(int cenario, String apostador, int qtnAposta, String previsaoString,double taxa, int custo){
+		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por taxa");
+		
 		ApostaTipo apostaTaxa = new ApostaTipo(apostador, qtnAposta, previsaoString, "TAXA", taxa);
 		this.cenarios.get(cenario).adicionarAposta(apostaTaxa);
 	}
 	 
 	public void adicionarApostaValor(int cenario, String apostador, int qtnAposta, String previsaoString,int valorSeguradoInt, int custo){
+		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por valor");
+		
 		ApostaTipo aposta = new ApostaTipo(apostador, qtnAposta, previsaoString, "VALOR", valorSeguradoInt);
 		this.cenarios.get(cenario).adicionarAposta(aposta);
 	}
@@ -137,14 +140,12 @@ public class ControleSistema {
 	}
 	
 	
-	
-	
 	public void alterarSeguroValor(int cenario, int numAposta, int valor){
-		this.cenarios.get(cenario).alterarAposta(numAposta, valor);
+		this.cenarios.get(cenario).alterarApostaValor(numAposta, valor);
 	}
 	
 	public void alterarSeguroTaxa(int cenario, int numAposta, double taxa){
-		this.cenarios.get(cenario).alterarAposta(numAposta, taxa);
+		this.cenarios.get(cenario).alterarApostaTaxa(numAposta, taxa);
 	}
 	
 	
@@ -277,12 +278,12 @@ public class ControleSistema {
 	}
 
 	/**
-	 * Representa a operação de fechar um cenário
+	 * Representa a operação de fechar um cenário.
 	 * 
 	 * @param numFornecidoUsuario
 	 *            representa a numeração que o usuário observa nos cenários.
 	 * @param resultadoCenario
-	 *            valor a ser atribuido ao cenário
+	 *            valor a ser atribuido ao cenário.
 	 */
 	public void fecharCenario(int numFornecidoUsuario, boolean resultadoCenario) {
 		this.excecoes.fecharCenarioExcecoes(numFornecidoUsuario, this.cenarios.size());
@@ -293,7 +294,16 @@ public class ControleSistema {
 		cenarioEscolhido.setResultadoCenario(resultadoCenario);
 		int valor = (int) (cenarioEscolhido.valorRecolhido() * this.financeiro.getPorcetagemCasa());
 		this.financeiro.adicionarValorCaixa(valor);
-
 	}
 	
+	
+//	public static void main(String[] args) {
+//		ControleSistema c = new ControleSistema(0.01, 100);
+//		c.cadastrarCenario("Vida");
+//		c.adicionarApostaValor(0, "a", 1000, "VAI ACONTECER", 100, 10);
+//		c.alterarSeguroTaxa(0, 0, 0.10);
+//		System.out.println(c.exibirApostas(1));
+//		c.alterarSeguroValor(0, 0, 100);
+//		System.out.println(c.exibirApostas(1));
+//	}
 }

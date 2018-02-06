@@ -1,6 +1,6 @@
 package sistema.entidades.apostas;
 
-public class ApostaSeguraValor {
+public class ApostaSeguraValor{
 	
 	int valor; 
 	
@@ -14,5 +14,12 @@ public class ApostaSeguraValor {
 
 	public int getValor() {
 		return valor;
-	}	
+	}
+	
+	
+	@Override
+	public String toString(){
+	
+		return String.format("%d", this.valor);
+	}
 }
