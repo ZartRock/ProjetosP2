@@ -1,4 +1,4 @@
-package sistema.entidades.apostas;
+package sistema.apostas;
 
 /**
  * Classe que representa uma apsota no sistema.

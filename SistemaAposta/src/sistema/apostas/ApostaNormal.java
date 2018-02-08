@@ -1,4 +1,4 @@
-package sistema.entidades.apostas;
+package sistema.apostas;
 
 public class ApostaNormal extends Aposta{
 	

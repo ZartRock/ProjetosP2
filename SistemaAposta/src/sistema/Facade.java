@@ -9,7 +9,7 @@ import easyaccept.EasyAccept;
  * @author Áxel Medeiros.
  */
 public class Facade {
-	ControleSistema controle;
+	private ControleSistema controle;
 
 	public static void main(String[] args) {
 
@@ -188,12 +188,12 @@ public class Facade {
 		return this.controle.getTotalRateioCenario(numCenario);
 	}
 	
-    public void cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao,int valorSegurado, int custo){ 
-    	this.controle.adicionarApostaValor(cenario, apostador, valor, previsao, valorSegurado, custo);
+    public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao,int valorSegurado, int custo){ 
+    	return this.controle.adicionarApostaValor(cenario, apostador, valor, previsao, valorSegurado, custo);
     }
     
-    public void cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo){
-    	this.controle.adicionarApostaTaxa(cenario, apostador, valor, previsao, taxa, custo);
+    public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo){
+    	return this.controle.adicionarApostaTaxa(cenario, apostador, valor, previsao, taxa, custo);
     }
     public void alterarSeguroValor(int cenario, int apostaAssegurada, int valor){
     	this.controle.alterarSeguroValor(cenario, apostaAssegurada, valor);

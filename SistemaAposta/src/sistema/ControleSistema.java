@@ -2,11 +2,10 @@ package sistema;
 
 import java.util.ArrayList;
 
-import sistema.entidades.Cenario;
-import sistema.entidades.CenarioBonus;
-import sistema.entidades.Financas;
-import sistema.entidades.apostas.ApostaNormal;
-import sistema.entidades.apostas.ApostaTipo;
+import sistema.apostas.ApostaNormal;
+import sistema.apostas.ApostaSegura;
+import sistema.cenarios.Cenario;
+import sistema.cenarios.CenarioBonus;
 
 
 /**
@@ -99,6 +98,7 @@ public class ControleSistema {
 	 */
 	public boolean adicionarApostaCenario(int numFornecidoUsuario, String nomeApostador, double qtnAposta,
 			String previsaoString) {
+		
 		this.excecoes.adicionarApostaCenarioExcecoes(numFornecidoUsuario, this.cenarios.size());
 		this.excecoes.apostaExcecoes(nomeApostador, qtnAposta, previsaoString, "Erro no cadastro de aposta");
 		
@@ -109,18 +109,22 @@ public class ControleSistema {
 		return true;
 	}
 	
-	public void adicionarApostaTaxa(int cenario, String apostador, int qtnAposta, String previsaoString,double taxa, int custo){
+	public int adicionarApostaTaxa(int cenario, String apostador, int qtnAposta, String previsaoString,double taxa, int custo){
 		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por taxa");
 		
-		ApostaTipo apostaTaxa = new ApostaTipo(apostador, qtnAposta, previsaoString, "TAXA", taxa);
-		this.cenarios.get(cenario).adicionarAposta(apostaTaxa);
+		ApostaSegura apostaTaxa = new ApostaSegura(apostador, qtnAposta, previsaoString, "TAXA", taxa);
+		this.cenarios.get(cenario - 1).adicionarAposta(apostaTaxa);
+		
+		return this.cenarios.get(cenario - 1).getNumApostas() - 1; //TODO: Adicionar outro
 	}
 	 
-	public void adicionarApostaValor(int cenario, String apostador, int qtnAposta, String previsaoString,int valorSeguradoInt, int custo){
+	public int adicionarApostaValor(int cenario, String apostador, int qtnAposta, String previsaoString,int valorSeguradoInt, int custo){
 		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por valor");
 		
-		ApostaTipo aposta = new ApostaTipo(apostador, qtnAposta, previsaoString, "VALOR", valorSeguradoInt);
-		this.cenarios.get(cenario).adicionarAposta(aposta);
+		ApostaSegura aposta = new ApostaSegura(apostador, qtnAposta, previsaoString, "VALOR", valorSeguradoInt);
+		this.cenarios.get(cenario - 1).adicionarAposta(aposta);
+		
+		return this.cenarios.get(cenario - 1).getNumApostas() - 1;
 	}
 
 	/**
@@ -141,11 +145,11 @@ public class ControleSistema {
 	
 	
 	public void alterarSeguroValor(int cenario, int numAposta, int valor){
-		this.cenarios.get(cenario).alterarApostaValor(numAposta, valor);
+		this.cenarios.get(cenario - 1).alterarApostaValor(numAposta, valor);
 	}
 	
 	public void alterarSeguroTaxa(int cenario, int numAposta, double taxa){
-		this.cenarios.get(cenario).alterarApostaTaxa(numAposta, taxa);
+		this.cenarios.get(cenario - 1).alterarApostaTaxa(numAposta, taxa);
 	}
 	
 	
@@ -296,14 +300,4 @@ public class ControleSistema {
 		this.financeiro.adicionarValorCaixa(valor);
 	}
 	
-	
-//	public static void main(String[] args) {
-//		ControleSistema c = new ControleSistema(0.01, 100);
-//		c.cadastrarCenario("Vida");
-//		c.adicionarApostaValor(0, "a", 1000, "VAI ACONTECER", 100, 10);
-//		c.alterarSeguroTaxa(0, 0, 0.10);
-//		System.out.println(c.exibirApostas(1));
-//		c.alterarSeguroValor(0, 0, 100);
-//		System.out.println(c.exibirApostas(1));
-//	}
 }

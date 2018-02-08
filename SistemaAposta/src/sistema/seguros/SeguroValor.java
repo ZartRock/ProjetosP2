@@ -1,10 +1,10 @@
-package sistema.entidades.apostas;
+package sistema.seguros;
 
-public class ApostaSeguraValor{
+public class SeguroValor{
 	
-	int valor; 
+	private int valor; 
 	
-	public ApostaSeguraValor(int valor) {
+	public SeguroValor(int valor) {
 		if (valor <= 0) {
 			throw new IllegalArgumentException("Valor não pode ser negativa ou nula");
 		}
@@ -20,6 +20,6 @@ public class ApostaSeguraValor{
 	@Override
 	public String toString(){
 	
-		return String.format("%d", this.valor);
+		return String.format("R$ %d", this.valor);
 	}
 }

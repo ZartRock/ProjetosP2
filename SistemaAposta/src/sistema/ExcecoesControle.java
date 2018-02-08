@@ -17,7 +17,7 @@ public class ExcecoesControle {
 	 *            representa uma array de string que contém mensagens
 	 *            espeficicas para cada exceção.
 	 */
-	private void tratarErroSelecionarCenario(int numFornecidoUsuario, int numCenarios,
+	public void tratarErroSelecionarCenario(int numFornecidoUsuario, int numCenarios,
 			String nomeErro) {
 		cenarioInvalido(numFornecidoUsuario, nomeErro);
 		cenarioNaoCadastrado(numFornecidoUsuario, numCenarios, nomeErro);

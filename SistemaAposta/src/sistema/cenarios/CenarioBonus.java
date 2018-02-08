@@ -1,4 +1,4 @@
-package sistema.entidades;
+package sistema.cenarios;
 
 /**
  * Classe que representa um cenário de apostas no sistema.

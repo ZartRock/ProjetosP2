@@ -1,9 +1,9 @@
-package sistema.entidades;
+package sistema.cenarios;
 
 import java.util.ArrayList;
 
-import sistema.entidades.apostas.Aposta;
-import sistema.entidades.apostas.ApostaTipo;
+import sistema.apostas.Aposta;
+import sistema.apostas.ApostaSegura;
 
 /**
  * Classe que representa um cenário de apostas no sistema.
@@ -123,12 +123,15 @@ public class Cenario {
 		int valorRecolhidoCentavos = 0;
 
 		for (Aposta aposta : this.conjuntoApostas) {
-
-			if ((this.resultadoCenario == true && aposta.getPrevisao() == false)
-					|| (this.resultadoCenario == false && aposta.getPrevisao() == true)) {
-
-				valorRecolhidoCentavos += aposta.getQtnAposta();
-
+			if (!(aposta instanceof ApostaSegura)) {
+				if ((this.resultadoCenario == true && aposta.getPrevisao() == false)
+						|| (this.resultadoCenario == false && aposta.getPrevisao() == true)) {
+	
+					valorRecolhidoCentavos += aposta.getQtnAposta();
+				}
+			} else {
+				Aposta a = (ApostaSegura) aposta;
+				
 			}
 
 		}
@@ -137,12 +140,12 @@ public class Cenario {
 	}
 
 	public void alterarApostaValor(int numAposta, int valor) {
-		ApostaTipo aposta = (ApostaTipo) this.conjuntoApostas.get(numAposta);
+		ApostaSegura aposta = (ApostaSegura) this.conjuntoApostas.get(numAposta);
 		aposta.alterarParaValor(valor);
 	}
 	
 	public void alterarApostaTaxa(int numAposta, double taxa) {
-		ApostaTipo aposta = (ApostaTipo) this.conjuntoApostas.get(numAposta);
+		ApostaSegura aposta = (ApostaSegura) this.conjuntoApostas.get(numAposta);
 		aposta.alterarParaTaxa(taxa);
 	}
 

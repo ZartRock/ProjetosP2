@@ -1,45 +1,47 @@
-package sistema.entidades.apostas;
+package sistema.apostas;
+
+import sistema.seguros.SeguroTaxa;
+import sistema.seguros.SeguroValor;
 
 /**
  * Representa uma aposta com seguro.
  * @author Áxel Medeiros
  *
  */
-public class ApostaTipo extends Aposta{
-	Object seguro;
-	String tipo;
-	// posso adicionar um enum com valor(1) E TIPOS(-1)
+public class ApostaSegura extends Aposta{
+	private Object seguro;
+	private String tipo;
 	
-	public ApostaTipo(String nomeApostador, double qtnAposta, String previsaoString, String tipo, double valor) {
+	public ApostaSegura(String nomeApostador, double qtnAposta, String previsaoString, String tipo, double valor) {
 		super(nomeApostador, qtnAposta, previsaoString);
 		
 		
 		if (tipo.equals("TAXA")) {
-			this.seguro = new ApostaSeguraTaxa(valor);
+			this.seguro = new SeguroTaxa(valor);
 			this.tipo = "TAXA";
 		} else if(tipo.equals("VALOR")) {
 			int valorInteiro = (int) (valor);
-			this.seguro = new ApostaSeguraValor(valorInteiro);
+			this.seguro = new SeguroValor(valorInteiro);
 			this.tipo = "VALOR";
 		} else {
-			System.out.println("fudeu");
+			//TODO: RETORNA ALGUM ERRO
 		}
 		
 	}
 	
 	public void alterarParaValor(int valor){
-		this.seguro = new ApostaSeguraValor(valor);
+		this.seguro = new SeguroValor(valor);
 		this.tipo = "VALOR";
 	}
 
 	public void alterarParaTaxa(double taxa) {
-		this.seguro = new ApostaSeguraTaxa(taxa);
+		this.seguro = new SeguroTaxa(taxa);
 		this.tipo = "TAXA";
 	}
 	
-	// para mim, deveria ter pagar seguro aqui, mas como não 
-	//sei fazer isso sem gambiarra, logo....
-
+//	public int pagarAposta() {
+//		
+//	}
 
 	public String getTipo() {
 		return tipo;

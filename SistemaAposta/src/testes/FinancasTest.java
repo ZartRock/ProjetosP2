@@ -3,7 +3,7 @@ package testes;
 import org.junit.Before;
 import org.junit.Test;
 
-import sistema.entidades.Financas;
+import sistema.Financas;
 
 import static org.junit.Assert.assertEquals;
 

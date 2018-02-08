@@ -1,10 +1,10 @@
-package sistema.entidades.apostas;
+package sistema.seguros;
 
-public class ApostaSeguraTaxa{
+public class SeguroTaxa{
 	
-	double taxa;
+	private double taxa;
 	
-	public ApostaSeguraTaxa(double taxa) {
+	public SeguroTaxa(double taxa) {
 		if (taxa <= 0) {
 			throw new IllegalArgumentException("Taxa não pode ser negativa ou nula");
 		}
