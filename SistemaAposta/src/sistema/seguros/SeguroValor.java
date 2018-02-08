@@ -1,10 +1,12 @@
 package sistema.seguros;
 
-public class SeguroValor{
+public class SeguroValor extends Seguro{
 	
 	private int valor; 
 	
 	public SeguroValor(int valor) {
+		super();
+		
 		if (valor <= 0) {
 			throw new IllegalArgumentException("Valor não pode ser negativa ou nula");
 		}

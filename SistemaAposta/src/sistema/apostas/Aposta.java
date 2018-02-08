@@ -1,5 +1,7 @@
 package sistema.apostas;
 
+import sistema.seguros.Seguro;
+
 /**
  * Classe que representa uma apsota no sistema.
  * 
@@ -10,7 +12,9 @@ public class Aposta {
 
 	protected String nomeApostador;
 	protected double qtnAposta;
-	protected boolean previsao; 
+	protected boolean previsao;
+	private Seguro seguro;
+
 
 	/**
 	 * Metodo responsável construção de um objeto do tipo Aposta.
@@ -23,12 +27,16 @@ public class Aposta {
 	 *            Representação em String da previsão do apostador.
 	 */
 
-	public Aposta(String nomeApostador, double qtnAposta, String previsaoString) {
-		//tratarExcecoesConstrutor(nomeApostador, qtnAposta, previsaoString);
-
+	public Aposta(String nomeApostador, double qtnAposta, String previsaoString, Seguro seguro) {
 		this.nomeApostador = nomeApostador;
 		this.qtnAposta = qtnAposta;
 		this.previsao = retornarValorPrevisao(previsaoString);
+		this.seguro = seguro;
+	}
+	
+	
+	public Aposta(String nomeApostador, double qtnAposta, String previsaoString){
+		this(nomeApostador, qtnAposta, previsaoString, null);
 	}
 
 	/**
@@ -48,40 +56,7 @@ public class Aposta {
 	public boolean getPrevisao() {
 		return this.previsao;
 	}
-
-
-	/**
-	 * Função que agrupa todas as exceções contidas na construção os objetos do
-	 * tipo Aposta.
-	 * 
-	 * @param nome
-	 *            Representa o nome do apostador
-	 * @param qtn
-	 *            Representa a quantidade a ser apostada pelo jogador
-	 * @param previsaoString
-	 *            Representa o resultado do cenário que o apostador previu.
-	 */
-	private void tratarExcecoesConstrutor(String nome, double qtn,
-			String previsaoString) {
-		if (nome.equals(null)) {
-			throw new NullPointerException("Nome nulo");
-		}
-
-		if (nome.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aposta: Apostador nao pode ser vazio ou nulo");
-		} else if (qtn <= 0) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aposta: Valor nao pode ser menor ou igual a zero");
-		}
-
-		if (previsaoString.trim().equals("") || previsaoString.equals(null)) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
-		}
-
-	}
-
+	
 	/**
 	 * Metodo com a obrigação de transformar previsões em String para Boolean,
 	 * além de lança as exceções dessa operação.
@@ -98,7 +73,9 @@ public class Aposta {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de aposta: Previsao invalida");
 	}
-
+	
+	
+	
 	/**
 	 * Metodo que representa a saída de Boolean para string do resultado da
 	 * aposta.
@@ -116,6 +93,13 @@ public class Aposta {
 		return resultado;
 	}
 	
+	
+	
+	public void setSeguro(Seguro seguro) {
+		this.seguro = seguro;
+	}
+
+
 	/**
 	 * Responsável por retorna um representação da aposta em formato de texto.
 	 * 

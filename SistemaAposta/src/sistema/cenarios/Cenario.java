@@ -3,7 +3,7 @@ package sistema.cenarios;
 import java.util.ArrayList;
 
 import sistema.apostas.Aposta;
-import sistema.apostas.ApostaSegura;
+import sistema.seguros.Seguro;
 
 /**
  * Classe que representa um cenário de apostas no sistema.
@@ -123,31 +123,24 @@ public class Cenario {
 		int valorRecolhidoCentavos = 0;
 
 		for (Aposta aposta : this.conjuntoApostas) {
-			if (!(aposta instanceof ApostaSegura)) {
-				if ((this.resultadoCenario == true && aposta.getPrevisao() == false)
-						|| (this.resultadoCenario == false && aposta.getPrevisao() == true)) {
-	
-					valorRecolhidoCentavos += aposta.getQtnAposta();
-				}
-			} else {
-				Aposta a = (ApostaSegura) aposta;
-				
+			
+			if ((this.resultadoCenario == true && aposta.getPrevisao() == false)
+					|| (this.resultadoCenario == false && aposta.getPrevisao() == true)) {
+
+				valorRecolhidoCentavos += aposta.getQtnAposta();
 			}
+			
 
 		}
 
 		return valorRecolhidoCentavos;
 	}
 
-	public void alterarApostaValor(int numAposta, int valor) {
-		ApostaSegura aposta = (ApostaSegura) this.conjuntoApostas.get(numAposta);
-		aposta.alterarParaValor(valor);
-	}
 	
-	public void alterarApostaTaxa(int numAposta, double taxa) {
-		ApostaSegura aposta = (ApostaSegura) this.conjuntoApostas.get(numAposta);
-		aposta.alterarParaTaxa(taxa);
+	public void alterarSeguro(int numAposta, Seguro seguro) {
+		this.conjuntoApostas.get(numAposta).setSeguro(seguro);
 	}
+
 
 	/**
 	 * Finaliza o cenário setando o resultado dele como um bolean

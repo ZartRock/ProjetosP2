@@ -1,10 +1,10 @@
 package sistema.seguros;
 
-public class SeguroTaxa{
-	
+public class SeguroTaxa extends Seguro{
 	private double taxa;
 	
 	public SeguroTaxa(double taxa) {
+		super();
 		if (taxa <= 0) {
 			throw new IllegalArgumentException("Taxa não pode ser negativa ou nula");
 		}

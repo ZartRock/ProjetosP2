@@ -2,10 +2,12 @@ package sistema;
 
 import java.util.ArrayList;
 
-import sistema.apostas.ApostaNormal;
-import sistema.apostas.ApostaSegura;
+import sistema.apostas.Aposta;
 import sistema.cenarios.Cenario;
 import sistema.cenarios.CenarioBonus;
+import sistema.seguros.Seguro;
+import sistema.seguros.SeguroTaxa;
+import sistema.seguros.SeguroValor;
 
 
 /**
@@ -103,7 +105,8 @@ public class ControleSistema {
 		this.excecoes.apostaExcecoes(nomeApostador, qtnAposta, previsaoString, "Erro no cadastro de aposta");
 		
 		int numCenario = numFornecidoUsuario - 1;
-		ApostaNormal aposta = new ApostaNormal(nomeApostador, qtnAposta, previsaoString);
+		Aposta aposta = new Aposta(nomeApostador, qtnAposta, previsaoString, null);
+	
 
 		this.cenarios.get(numCenario).adicionarAposta(aposta);
 		return true;
@@ -112,16 +115,18 @@ public class ControleSistema {
 	public int adicionarApostaTaxa(int cenario, String apostador, int qtnAposta, String previsaoString,double taxa, int custo){
 		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por taxa");
 		
-		ApostaSegura apostaTaxa = new ApostaSegura(apostador, qtnAposta, previsaoString, "TAXA", taxa);
-		this.cenarios.get(cenario - 1).adicionarAposta(apostaTaxa);
+		Seguro seguroTaxa = new SeguroTaxa(taxa);
+		Aposta aposta = new Aposta(apostador, qtnAposta, previsaoString, seguroTaxa);
+		this.cenarios.get(cenario - 1).adicionarAposta(aposta);
 		
-		return this.cenarios.get(cenario - 1).getNumApostas() - 1; //TODO: Adicionar outro
+		return this.cenarios.get(cenario - 1).getNumApostas() - 1; //TODO: Adicionar outro id / Mas vou deixar assim por enquanto
 	}
 	 
 	public int adicionarApostaValor(int cenario, String apostador, int qtnAposta, String previsaoString,int valorSeguradoInt, int custo){
 		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por valor");
 		
-		ApostaSegura aposta = new ApostaSegura(apostador, qtnAposta, previsaoString, "VALOR", valorSeguradoInt);
+		Seguro seguroValor = new SeguroValor(valorSeguradoInt);
+		Aposta aposta = new Aposta(apostador, qtnAposta, previsaoString, seguroValor);
 		this.cenarios.get(cenario - 1).adicionarAposta(aposta);
 		
 		return this.cenarios.get(cenario - 1).getNumApostas() - 1;
@@ -145,15 +150,16 @@ public class ControleSistema {
 	
 	
 	public void alterarSeguroValor(int cenario, int numAposta, int valor){
-		this.cenarios.get(cenario - 1).alterarApostaValor(numAposta, valor);
+		Seguro novoSeguro = new SeguroValor(valor);
+		this.cenarios.get(cenario - 1).alterarSeguro(numAposta - 1, novoSeguro);
+		
 	}
 	
 	public void alterarSeguroTaxa(int cenario, int numAposta, double taxa){
-		this.cenarios.get(cenario - 1).alterarApostaTaxa(numAposta, taxa);
+		Seguro novoSeguro = new SeguroTaxa(taxa);
+		this.cenarios.get(cenario - 1).alterarSeguro(numAposta - 1, novoSeguro);
 	}
 	
-	
-
 	/**
 	 * Metodo responsável por pegar todas as representações de todos os cenários já
 	 * cadastrados.
