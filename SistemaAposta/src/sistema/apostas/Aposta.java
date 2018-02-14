@@ -34,7 +34,12 @@ public class Aposta {
 		this.seguro = seguro;
 	}
 	
-	
+	/**
+	 * Metodo responsável pela construção de um objeto do tipo aposta com 3 argumentos
+	 * @param nomeApostador
+	 * @param qtnAposta
+	 * @param previsaoString
+	 */
 	public Aposta(String nomeApostador, double qtnAposta, String previsaoString){
 		this(nomeApostador, qtnAposta, previsaoString, null);
 	}
@@ -93,7 +98,17 @@ public class Aposta {
 		return resultado;
 	}
 	
-	
+	/**
+	 * Método realizar o pagar seguro da aposta
+	 * @return o valor a ser pago no seguro
+	 */
+	public int pagarSeguro() {
+		if (this.seguro != null) {
+			return this.seguro.pagarSeguro(this.qtnAposta);
+		}
+		
+		return 0;
+	}
 	
 	public void setSeguro(Seguro seguro) {
 		this.seguro = seguro;

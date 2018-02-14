@@ -1,5 +1,11 @@
 package sistema;
 
+/**
+ * Classe responsável por lançar as exeções do ControleSistema
+ * 
+ * @author Áxel Medeiros.
+ *
+ */
 public class ExcecoesControle {
 	
 	
@@ -61,45 +67,111 @@ public class ExcecoesControle {
 		}
 	}
 	
-	
+	/**
+	 * Responsável por direcionar o erro de adicionar aposta cenario
+	 * @param numFornecidoUsuario
+	 * 		número aparente do cenário
+	 * @param numCenarios
+	 * 		numero total de cenário cadastrados
+	 */
 	public void adicionarApostaCenarioExcecoes(int numFornecidoUsuario, int numCenarios){
 		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro no cadastro de aposta");
 	}
 	
-	
+	/**
+	 * Responsável por direcionar o erro de exibir cenário.
+	 * @param numFornecidoUsuario
+	 * 		número aparente do cenário
+	 * @param numCenarios
+	 * 		numero total de cenário cadastrados
+	 */
 	public void exibirCenarioExcessoes(int numFornecidoUsuario, int numCenarios){
 		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro na consulta de cenario");
 		
 	}
-	
+	/**
+	 * Responsável por direcionar o erro de adicionar aposta cenario
+	 * @param numFornecidoUsuario
+	 * 		número aparente do cenário
+	 * @param numCenarios
+	 * 		numero total de cenário cadastrados
+	 */
 	public void retornarNumApostaCenarioExcecoes(int numFornecidoUsuario, int numCenarios){
 		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro na consulta do total de apostas");
 	}
 	
+	/**
+	 * Responsável por direcionar o erro de retornarValorTotalApostas.
+	 * @param numFornecidoUsuario
+	 * 		número aparente do cenário
+	 * @param numCenarios
+	 * 		numero total de cenário cadastrados
+	 */
 	public void retornarValorTotalApostasExcecoes(int numFornecidoUsuario, int numCenarios){
 		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro na consulta do valor total de apostas");
 	}
 	
+	/**
+	 * Responsável por direcionar o erro de getCaixaCenario.
+	 * @param numFornecidoUsuario
+	 * 		número aparente do cenário
+	 * @param numCenarios
+	 * 		numero total de cenário cadastrados
+	 */
 	public void getCaixaCenarioExcecoes(int numFornecidoUsuario, int numCenarios){
 		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro na consulta do caixa do cenario");
 	}
 	
-	
+	/**
+	 * Responsável por direcionar o erro de facharAposta.
+	 * @param numFornecidoUsuario
+	 * 		número aparente do cenário
+	 * @param numCenarios
+	 * 		numero total de cenário cadastrados
+	 */
 	public void fecharApostaExcecoes(int numFornecidoUsuario, int numCenarios){
 		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro ao fechar aposta");
 	}
 	
+	/**
+	 * Responsável por direcionar o erro de fecharCenario.
+	 * @param numFornecidoUsuario
+	 * 		número aparente do cenário
+	 * @param numCenarios
+	 * 		numero total de cenário cadastrados
+	 */
 	public void fecharCenarioExcecoes(int numFornecidoUsuario, int numCenarios){
 		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro ao fechar aposta");
 	}
 	
+	/**
+	 * Responsável por direcionar o erro de getTotalRateioCenario.
+	 * @param numFornecidoUsuario
+	 * 		número aparente do cenário
+	 * @param numCenarios
+	 * 		numero total de cenário cadastrados
+	 */
 	public void getTotalRateioCenarioExcecoes(int numFornecidoUsuario, int numCenarios){
 		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro na consulta do total de rateio do cenario");
 	}
 	
-	// ------------------------------------ ---------------------------------------------------------//
+	/**
+	 * Responsável por tratar erros comuns na construção de uma aposta.
+	 * @param nome
+	 * 		representa o nome do apsotador.
+	 * @param qtn
+	 * 		representa a quantidade a ser apostada.
+	 * @param previsaoString
+	 * 		representa o resultado esperado do cenário
+	 * @param nomeErro
+	 * 		representa o nome do metodo onde ocorrer o erro.
+	 * @param numCenarios
+	 * 		representa a quantidade de cenários atuais.
+	 * @param cenario
+	 * 		representa o número aparente do cenário
+	 */
 	public void apostaExcecoes(String nome, double qtn,
-			String previsaoString, String nomeErro) {
+			String previsaoString, String nomeErro, int numCenarios, int cenario) {
 		
 		if (nome.equals(null)) {
 			throw new NullPointerException("Nome nulo");
@@ -113,10 +185,21 @@ public class ExcecoesControle {
 					nomeErro + ": Valor nao pode ser menor ou igual a zero");
 		}
 
-		if (previsaoString.trim().equals("") || previsaoString.equals(null)) {
+		if (previsaoString.trim().equals("")) {
 			throw new IllegalArgumentException(
 					nomeErro + ": Previsao nao pode ser vazia ou nula");
+		} else if (!(previsaoString.equals("VAI ACONTECER") 
+					|| previsaoString.equals("N VAI ACONTECER"))) {
+			
+			throw new IllegalArgumentException(
+					 nomeErro + ": Previsao invalida");
 		}
+		
+		if (cenario < 1 || cenario > numCenarios) {
+			throw new IllegalArgumentException(
+					nomeErro + ": Cenario invalido");
+		}
+		
 	}
 	
 	

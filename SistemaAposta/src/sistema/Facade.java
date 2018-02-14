@@ -113,12 +113,6 @@ public class Facade {
 				previsao);
 	}
 
-//	public void cadastrarApostaSeguraValor(int cenario, String apostador, 
-//			int valor, String previsao, int valor, int custo){
-//		
-//		
-//	}
-
 	/**
 	 * Retorna o valor total das apostas feitas em um cenário.
 	 * 
@@ -188,6 +182,22 @@ public class Facade {
 		return this.controle.getTotalRateioCenario(numCenario);
 	}
 	
+	/**
+	 * Realiza o cadastro de uma apsota segurada por valor.
+	 * @param cenario
+	 * 		representa o índice de um cenário.
+	 * @param apostador
+	 * 		representa o nome do apostador
+	 * @param valor
+	 * 		representa o valor a ser apostado.
+	 * @param previsao
+	 * 		representa o resultado esperado do cenário
+	 * @param valorSegurado
+	 * 		representa o valor a ser assegurado
+	 * @param custo
+	 * 		representa o custo para realizar o seguro.
+	 * @return
+	 */
     public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao,int valorSegurado, int custo){ 
     	return this.controle.adicionarApostaValor(cenario, apostador, valor, previsao, valorSegurado, custo);
     }

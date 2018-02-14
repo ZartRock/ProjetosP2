@@ -1,12 +1,23 @@
 package sistema.seguros;
 
+/**
+ * Classe abstrata que representa o seguro das apostas.l
+ * 
+ * @author Áxel Medeiros
+ */
 public abstract class Seguro {
 	
+	/**
+	 * Contrói a classe abstrata
+	 */
+	public Seguro() {}	
 	
-	public Seguro() {}
-	
-	public int pagarSeguro() { return 0; }	
-	
-	
-	public int pagarSeguro(int qtnAposta) { return 0; } 
+	/**
+	 * Realiza o pagamento dos seguros
+	 * @param qtnAposta
+	 * 		representa a quantidade da aposta
+	 * 
+	 * @return	o novo valor a ser assegurado.
+	 */
+	public abstract int pagarSeguro(double qtnAposta);
 }

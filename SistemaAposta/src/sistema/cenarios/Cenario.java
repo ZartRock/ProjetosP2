@@ -135,8 +135,36 @@ public class Cenario {
 
 		return valorRecolhidoCentavos;
 	}
-
 	
+	/**
+	 * Retorna o valor total dos seguros a serem pagos no cenário.
+	 * @return este valor em centavos.
+	 */
+	public int valorSeguros() {
+		int valorSeguros = 0;
+		for(Aposta aposta : this.conjuntoApostas) {
+			if ((this.resultadoCenario == true && aposta.getPrevisao() == false)
+					|| (this.resultadoCenario == false && aposta.getPrevisao() == true)) {
+				
+				System.out.println(aposta);
+				System.out.println("====> " + aposta.pagarSeguro());
+				valorSeguros += aposta.pagarSeguro();
+			
+			} 
+		}
+		
+		
+		System.out.println("------------------ " + valorSeguros);
+		return valorSeguros;
+	}
+
+	/**
+	 * Alterar o tipo do seguro de uma aposta específica
+	 * @param numAposta
+	 * 		representa o índice da aposta
+	 * @param seguro
+	 * 		representa o novo seguro
+	 */
 	public void alterarSeguro(int numAposta, Seguro seguro) {
 		this.conjuntoApostas.get(numAposta).setSeguro(seguro);
 	}
@@ -162,7 +190,8 @@ public class Cenario {
 	 * Retorna o rateio total de um cenário.
 	 */
 	public int getRateio() { return valorRecolhido(); }
-
+	
+	
 	/**
 	 * Retorna um string que contem a representação do Cenário
 	 * 
@@ -186,7 +215,9 @@ public class Cenario {
 			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
 		}
 	}
-
+	
+	
+	
 	/**
 	 * Retorna um string contendo o estado atual do cenário.
 	 * 

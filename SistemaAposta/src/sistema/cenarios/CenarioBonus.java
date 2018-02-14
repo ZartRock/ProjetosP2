@@ -3,7 +3,7 @@ package sistema.cenarios;
 /**
  * Classe que representa um cenário de apostas no sistema.
  * 
- * @author Áxel Medeiros
+ * @author Áxel Medeiros.
  *
  */
 public class CenarioBonus extends Cenario{
@@ -56,4 +56,5 @@ public class CenarioBonus extends Cenario{
 			return "Finalizado (n ocorreu)";
 		}
 	}
+	
 }

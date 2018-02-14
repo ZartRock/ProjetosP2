@@ -102,7 +102,7 @@ public class ControleSistema {
 			String previsaoString) {
 		
 		this.excecoes.adicionarApostaCenarioExcecoes(numFornecidoUsuario, this.cenarios.size());
-		this.excecoes.apostaExcecoes(nomeApostador, qtnAposta, previsaoString, "Erro no cadastro de aposta");
+		this.excecoes.apostaExcecoes(nomeApostador, qtnAposta, previsaoString, "Erro no cadastro de aposta", this.cenarios.size(), numFornecidoUsuario);
 		
 		int numCenario = numFornecidoUsuario - 1;
 		Aposta aposta = new Aposta(nomeApostador, qtnAposta, previsaoString, null);
@@ -112,24 +112,61 @@ public class ControleSistema {
 		return true;
 	}
 	
+	/**
+	 * Adiciona uma aposta assegurada por taxa a um cenário
+	 * @param cenario
+	 * 		representa o número aparente do cenário.
+	 * @param apostador
+	 * 		representa o nome do apostador.
+	 * @param qtnAposta
+	 * 		representa a quantidade a ser apostada.
+	 * @param previsaoString
+	 * 		representa a previsao em String.
+	 * @param taxa
+	 * 		representa a taxa assegurada da quantia da aposta.
+	 * @param custo
+	 * 		representa o custo a ser 
+	 * @return
+	 * 		o número aparente da aposta recem cadastrada.
+	 */
 	public int adicionarApostaTaxa(int cenario, String apostador, int qtnAposta, String previsaoString,double taxa, int custo){
-		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por taxa");
+		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por taxa", this.cenarios.size(), cenario);
 		
 		Seguro seguroTaxa = new SeguroTaxa(taxa);
 		Aposta aposta = new Aposta(apostador, qtnAposta, previsaoString, seguroTaxa);
 		this.cenarios.get(cenario - 1).adicionarAposta(aposta);
+		this.financeiro.adicionarValorCaixa(custo);
 		
-		return this.cenarios.get(cenario - 1).getNumApostas() - 1; //TODO: Adicionar outro id / Mas vou deixar assim por enquanto
+		return this.cenarios.get(cenario - 1).getNumApostas(); //TODO: deixei esse dando o numero esperado pelo usuário
 	}
 	 
+	/**
+	 * Adiciona uma aposta assegurada por valor a um cenário
+	 * @param cenario
+	 * 		representa o número aparente do cenário.
+	 * @param apostador
+	 * 		representa o nome do apostador.
+	 * @param qtnAposta
+	 * 		representa a quantidade a ser apostada.
+	 * @param previsaoString
+	 * 		representa a previsao em String.
+	 * @param valorSeguradoInt
+	 * 		representa a taxa assegurada da quantia da aposta.
+	 * @param custo
+	 * 		representa o custo a ser 
+	 * @return
+	 * 		o número aparente da aposta recem cadastrada.
+	 */
 	public int adicionarApostaValor(int cenario, String apostador, int qtnAposta, String previsaoString,int valorSeguradoInt, int custo){
-		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por valor");
+		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por valor", this.cenarios.size(), cenario);
 		
 		Seguro seguroValor = new SeguroValor(valorSeguradoInt);
 		Aposta aposta = new Aposta(apostador, qtnAposta, previsaoString, seguroValor);
 		this.cenarios.get(cenario - 1).adicionarAposta(aposta);
 		
-		return this.cenarios.get(cenario - 1).getNumApostas() - 1;
+		this.financeiro.adicionarValorCaixa(custo);
+		
+		return this.cenarios.get(cenario - 1).getNumApostas();
 	}
 
 	/**
@@ -148,13 +185,30 @@ public class ControleSistema {
 		return this.cenarios.get(numCenario).toString(numFornecidoUsuario);
 	}
 	
-	
+	/**
+	 * Responsável por alterar o seguro de uma aposta para valor.
+	 * @param cenario
+	 * 			representa o número aparente do cenário.
+	 * @param numAposta
+	 * 			representa o número aparente de uma aposta.
+	 * @param valor
+	 * 			representa o valor a ser assegurado.
+	 */
 	public void alterarSeguroValor(int cenario, int numAposta, int valor){
 		Seguro novoSeguro = new SeguroValor(valor);
 		this.cenarios.get(cenario - 1).alterarSeguro(numAposta - 1, novoSeguro);
 		
 	}
 	
+	/**
+	 * Responsável por alterar o seguro de uma aposta para taxa.
+	 * @param cenario
+	 * 			representa o número aparente do cenário.
+	 * @param numAposta
+	 * 			representa o número aparente de uma aposta.
+	 * @param taxa
+	 * 			representa a taxa a ser assegurada.
+	**/
 	public void alterarSeguroTaxa(int cenario, int numAposta, double taxa){
 		Seguro novoSeguro = new SeguroTaxa(taxa);
 		this.cenarios.get(cenario - 1).alterarSeguro(numAposta - 1, novoSeguro);
@@ -164,7 +218,7 @@ public class ControleSistema {
 	 * Metodo responsável por pegar todas as representações de todos os cenários já
 	 * cadastrados.
 	 * 
-	 * @return um string que representa está saída.
+	 * @return um string que representa a saída.
 	 */
 	public String exibirTodosCenarios() {
 		String saida = "";
@@ -258,8 +312,10 @@ public class ControleSistema {
 
 		cenario.setResultadoCenario(ocorreu);
 		int valorParaCaixa = (int) (cenario.valorRecolhido() * this.financeiro.getPorcetagemCasa());
-
+		int valorRetirarCaixa = (int) (cenario.valorSeguros());
 		this.financeiro.adicionarValorCaixa(valorParaCaixa);
+		this.financeiro.retirarValorCaixa(valorRetirarCaixa);
+		
 	}
 
 	/**
@@ -282,7 +338,7 @@ public class ControleSistema {
 		}
 
 		double valorCentavos = Math
-				.floor((cenario.getRateio() - cenario.valorRecolhido() * financeiro.getPorcetagemCasa()));
+				.ceil((cenario.getRateio() - cenario.valorRecolhido() * financeiro.getPorcetagemCasa()));
 
 		return (int) valorCentavos;
 	}
