@@ -155,6 +155,8 @@ public class ExcecoesControle {
 		tratarErroSelecionarCenario(numFornecidoUsuario, numCenarios, "Erro na consulta do total de rateio do cenario");
 	}
 	
+	
+	
 	/**
 	 * Responsável por tratar erros comuns na construção de uma aposta.
 	 * @param nome
@@ -198,9 +200,6 @@ public class ExcecoesControle {
 		if (cenario < 1 || cenario > numCenarios) {
 			throw new IllegalArgumentException(
 					nomeErro + ": Cenario invalido");
-		}
-		
-	}
-	
-	
+		}		
+	}	
 }

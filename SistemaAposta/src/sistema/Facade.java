@@ -42,14 +42,23 @@ public class Facade {
 		this.controle = new ControleSistema(porcetagemCasa, caixaAtual);
 
 	}
-
+	
 	/**
-	 * Retorna o valor atual do caixa
+	 * Cadastra uma aposta espeficia em um cenário.
 	 * 
-	 * @return int represenando o caixa.
+	 * @param cenario
+	 *            representa o indice de um cenário
+	 * @param apostador
+	 *            representa o nome do apostador.
+	 * @param valor
+	 *            representa o valor a ser apostado
+	 * @param previsao
+	 *            representa a previsão feita pelo usuário.
 	 */
-	public int getCaixa() {
-		return this.controle.getCaixaAtual();
+	public void cadastrarAposta(int cenario, String apostador, int valor,
+			String previsao) {
+		this.controle.adicionarApostaCenario(cenario, apostador, valor,
+				previsao);
 	}
 
 	/**
@@ -95,23 +104,6 @@ public class Facade {
 		return this.controle.exibirTodosCenarios();
 	}
 
-	/**
-	 * Cadastra uma aposta espeficia em um cenário.
-	 * 
-	 * @param cenario
-	 *            representa o indice de um cenário
-	 * @param apostador
-	 *            representa o nome do apostador.
-	 * @param valor
-	 *            representa o valor a ser apostado
-	 * @param previsao
-	 *            representa a previsão feita pelo usuário.
-	 */
-	public void cadastrarAposta(int cenario, String apostador, int valor,
-			String previsao) {
-		this.controle.adicionarApostaCenario(cenario, apostador, valor,
-				previsao);
-	}
 
 	/**
 	 * Retorna o valor total das apostas feitas em um cenário.
@@ -158,6 +150,17 @@ public class Facade {
 	public void fecharAposta(int numCenario, boolean resultadoCenario) {
 		this.controle.fecharAposta(numCenario, resultadoCenario);
 	}
+	
+	
+	/**
+	 * Retorna o valor atual do caixa
+	 * 
+	 * @return int represenando o caixa.
+	 */
+	public int getCaixa() {
+		return this.controle.getCaixaAtual();
+	}
+
 
 	/**
 	 * Retorna a quantidade de caixa gerado por um cenário específico.
@@ -196,19 +199,56 @@ public class Facade {
 	 * 		representa o valor a ser assegurado
 	 * @param custo
 	 * 		representa o custo para realizar o seguro.
-	 * @return
+	 * 
+	 * @return o indice da aposta recém cadastrada.
 	 */
     public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao,int valorSegurado, int custo){ 
     	return this.controle.adicionarApostaValor(cenario, apostador, valor, previsao, valorSegurado, custo);
     }
     
+    /**
+	 * Realiza o cadastro de uma apsota segurada por valor.
+	 * @param cenario
+	 * 		representa o índice de um cenário.
+	 * @param apostador
+	 * 		representa o nome do apostador
+	 * @param valor
+	 * 		representa o valor a ser apostado.
+	 * @param previsao
+	 * 		representa o resultado esperado do cenário
+	 * @param taxa
+	 * 		representa a taxa a ser assegurada
+	 * @param custo
+	 * 		representa o custo para realizar o seguro.
+	 * 
+	 * @return o indice da aposta recém cadastrada.
+	 */
     public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo){
     	return this.controle.adicionarApostaTaxa(cenario, apostador, valor, previsao, taxa, custo);
     }
+    
+    /**
+	 * Responsável por alterar o seguro de uma aposta para valor.
+	 * @param cenario
+	 * 			representa o índice aparente do cenário.
+	 * @param apostaAssegurada
+	 * 			representa o índice aparente de uma aposta.
+	 * @param valor
+	 * 			representa o valor a ser assegurado.
+	 */
     public void alterarSeguroValor(int cenario, int apostaAssegurada, int valor){
     	this.controle.alterarSeguroValor(cenario, apostaAssegurada, valor);
     }
     
+    /**
+	 * Responsável por alterar o seguro de uma aposta para taxa.
+	 * @param cenario
+	 * 			representa o índice aparente do cenário.
+	 * @param apostaAssegurada
+	 * 			representa indice de uma aposta.
+	 * @param taxa
+	 * 			representa a taxa a ser assegurada.
+	**/
     public void alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa){
     	this.controle.alterarSeguroTaxa(cenario, apostaAssegurada, taxa);
     }

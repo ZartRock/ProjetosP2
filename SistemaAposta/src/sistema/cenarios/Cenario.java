@@ -209,7 +209,7 @@ public class Cenario {
 	 * @param descricao
 	 */
 	private void tratarExcecoesConstrutor(String descricao) {
-		if (descricao.trim().equals(null)) {
+		if (descricao.equals(null)) {
 			throw new NullPointerException("Descricao nula");
 		} else if (descricao.trim().equals("")) {
 			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");

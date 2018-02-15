@@ -48,7 +48,8 @@ public class ControleSistema {
 	 *            representa a string de descrição do cenário.
 	 */
 	public void cadastrarCenario(String descricaoCenario) {
-		this.cenarios.add(new Cenario(descricaoCenario));
+		Cenario c = new Cenario(descricaoCenario);
+		this.cenarios.add(c);
 	}
 	
 	
@@ -131,13 +132,14 @@ public class ControleSistema {
 	 */
 	public int adicionarApostaTaxa(int cenario, String apostador, int qtnAposta, String previsaoString,double taxa, int custo){
 		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por taxa", this.cenarios.size(), cenario);
+		custoExcecao(custo);
 		
 		Seguro seguroTaxa = new SeguroTaxa(taxa);
 		Aposta aposta = new Aposta(apostador, qtnAposta, previsaoString, seguroTaxa);
 		this.cenarios.get(cenario - 1).adicionarAposta(aposta);
 		this.financeiro.adicionarValorCaixa(custo);
 		
-		return this.cenarios.get(cenario - 1).getNumApostas(); //TODO: deixei esse dando o numero esperado pelo usuário
+		return this.cenarios.get(cenario - 1).getNumApostas();
 	}
 	 
 	/**
@@ -159,6 +161,7 @@ public class ControleSistema {
 	 */
 	public int adicionarApostaValor(int cenario, String apostador, int qtnAposta, String previsaoString,int valorSeguradoInt, int custo){
 		this.excecoes.apostaExcecoes(apostador, qtnAposta, previsaoString, "Erro no cadastro de aposta assegurada por valor", this.cenarios.size(), cenario);
+		custoExcecao(custo);
 		
 		Seguro seguroValor = new SeguroValor(valorSeguradoInt);
 		Aposta aposta = new Aposta(apostador, qtnAposta, previsaoString, seguroValor);
@@ -194,7 +197,8 @@ public class ControleSistema {
 	 * @param valor
 	 * 			representa o valor a ser assegurado.
 	 */
-	public void alterarSeguroValor(int cenario, int numAposta, int valor){
+	public void alterarSeguroValor(int cenario, int numAposta, int valor){		
+		
 		Seguro novoSeguro = new SeguroValor(valor);
 		this.cenarios.get(cenario - 1).alterarSeguro(numAposta - 1, novoSeguro);
 		
@@ -360,6 +364,13 @@ public class ControleSistema {
 		cenarioEscolhido.setResultadoCenario(resultadoCenario);
 		int valor = (int) (cenarioEscolhido.valorRecolhido() * this.financeiro.getPorcetagemCasa());
 		this.financeiro.adicionarValorCaixa(valor);
+	}
+	
+	
+	private void custoExcecao(int custo) {
+		if (custo <= 0) {
+			throw new IllegalArgumentException("Valor de custo não pode ser zero ou negativo");
+		}
 	}
 	
 }
