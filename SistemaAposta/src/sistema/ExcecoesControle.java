@@ -175,13 +175,13 @@ public class ExcecoesControle {
 	public void apostaExcecoes(String nome, double qtn,
 			String previsaoString, String nomeErro, int numCenarios, int cenario) {
 		
-		if (nome.equals(null)) {
+		if (nome == null) {
 			throw new NullPointerException("Nome nulo");
-		}
-
-		if (nome.trim().isEmpty()) {
+		
+		} else if (nome.trim().isEmpty()) {
 			throw new IllegalArgumentException(
 					nomeErro + ": Apostador nao pode ser vazio ou nulo");
+		
 		} else if (qtn <= 0) {
 			throw new IllegalArgumentException(
 					nomeErro + ": Valor nao pode ser menor ou igual a zero");

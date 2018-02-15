@@ -102,6 +102,13 @@ public class FacadeTest {
 		facade.cadastrarAposta(1, "axel", 100, "VAI ACONTECER");
 		
 		try {
+			facade.cadastrarAposta(1, null, 100, "VAI ACONTECER");
+		} catch (Exception e) {
+			assertEquals("Nome nulo", e.getMessage());
+		}
+		
+		
+		try {
 			facade.cadastrarAposta(0, "axel", 100, "VAI ACONTECER");
 		} catch (Exception e) {
 			assertEquals("Erro no cadastro de aposta: Cenario invalido", e.getMessage());

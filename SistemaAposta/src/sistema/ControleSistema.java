@@ -366,7 +366,10 @@ public class ControleSistema {
 		this.financeiro.adicionarValorCaixa(valor);
 	}
 	
-	
+	/**
+	 * Lança uma exceção quando o custo menor ou igual a zero.
+	 * @param custo
+	 */
 	private void custoExcecao(int custo) {
 		if (custo <= 0) {
 			throw new IllegalArgumentException("Valor de custo não pode ser zero ou negativo");
