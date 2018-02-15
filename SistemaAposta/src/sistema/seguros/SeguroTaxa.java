@@ -8,6 +8,7 @@ package sistema.seguros;
 public class SeguroTaxa extends Seguro{
 	private double taxa;
 	
+	
 	/**
 	 * Construtor do objeto
 	 * @param taxa
@@ -26,7 +27,6 @@ public class SeguroTaxa extends Seguro{
 	 */
 	@Override
 	public int pagarSeguro(double qtnAposta) {
-		System.out.println("ROOOOOOOOOONALLLLDOO    " + (int) Math.floor(qtnAposta * taxa));
 		return (int) Math.floor(qtnAposta * taxa);
 	}
 	

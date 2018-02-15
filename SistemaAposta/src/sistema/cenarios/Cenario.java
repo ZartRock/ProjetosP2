@@ -146,15 +146,11 @@ public class Cenario {
 			if ((this.resultadoCenario == true && aposta.getPrevisao() == false)
 					|| (this.resultadoCenario == false && aposta.getPrevisao() == true)) {
 				
-				System.out.println(aposta);
-				System.out.println("====> " + aposta.pagarSeguro());
 				valorSeguros += aposta.pagarSeguro();
 			
 			} 
 		}
 		
-		
-		System.out.println("------------------ " + valorSeguros);
 		return valorSeguros;
 	}
 
