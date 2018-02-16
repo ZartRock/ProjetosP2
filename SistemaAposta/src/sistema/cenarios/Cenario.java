@@ -11,7 +11,7 @@ import sistema.seguros.Seguro;
  * @author Áxel Medeiros
  * 
  */
-public class Cenario {
+public class Cenario implements Comparable<Cenario> {
 
 	protected String descricao;
 	protected ArrayList<Aposta> conjuntoApostas;
@@ -30,6 +30,64 @@ public class Cenario {
 		this.descricao = descricao;
 		this.conjuntoApostas = new ArrayList<Aposta>();
 		this.estaTerminado = false;
+	}
+
+	/**
+	 * Adiciona um o valor de uma aposta ao conjunto
+	 * 
+	 * @param aposta
+	 *            representa uma aposta
+	 * @return se a aposta foi realizada ou não
+	 */
+	public boolean adicionarAposta(Aposta aposta) {
+		this.conjuntoApostas.add(aposta);
+		return true;
+	}
+
+	/**
+	 * Alterar o tipo do seguro de uma aposta específica
+	 * 
+	 * @param numAposta
+	 *            representa o índice da aposta
+	 * @param seguro
+	 *            representa o novo seguro
+	 */
+	public void alterarSeguro(int numAposta, Seguro seguro) {
+		this.conjuntoApostas.get(numAposta).setSeguro(seguro);
+	}
+
+	/**
+	 * Retorna uma exibição do Cenario em uma String
+	 * 
+	 * @return uma String que representa o cenário
+	 */
+	public String exibeApostas() {
+		String saida = "";
+		for (Aposta aposta : this.conjuntoApostas) {
+			saida += aposta.toString() + "\n";
+		}
+
+		if (saida.equals("")) {
+			saida = "Nenhuma aposta cadastrada";
+		}
+
+		return saida;
+	}
+
+	/**
+	 * Finaliza o cenário setando o resultado dele como um bolean
+	 * 
+	 * @param resultadoCenario
+	 *            representa o bolean a ser passado com novo valor do cenário.
+	 * @throws Exception
+	 *             Lança uma exceção se o cenário já estiver terminado
+	 */
+	public void finalizarCenario(boolean resultadoCenario) throws Exception {
+		if (this.estaTerminado == true) {
+			throw new Exception("Erro ao fechar aposta: Cenario ja esta fechado");
+		}
+		this.resultadoCenario = resultadoCenario;
+		this.estaTerminado = true;
 	}
 
 	/**
@@ -60,44 +118,10 @@ public class Cenario {
 	}
 
 	/**
-	 * Colcocar o resltado da operaçao igual a variavel resultado
-	 * 
-	 * @param resultadoCenario
-	 *            representa Boolean que representa esta opeeração
+	 * Retorna o rateio total de um cenário.
 	 */
-	public void setResultadoCenario(boolean resultadoCenario) {
-		this.resultadoCenario = resultadoCenario;
-		this.estaTerminado = true;
-	}
-
-	/**
-	 * Adiciona um o valor de uma aposta ao conjunto
-	 * 
-	 * @param aposta
-	 *            representa uma aposta
-	 * @return se a aposta foi realizada ou não
-	 */
-	public boolean adicionarAposta(Aposta aposta) {
-		this.conjuntoApostas.add(aposta);
-		return true;
-	}
-
-	/**
-	 * Retorna uma exibição do Cenario em uma String
-	 * 
-	 * @return uma String que representa o cenário
-	 */
-	public String exibeApostas() {
-		String saida = "";
-		for (Aposta aposta : this.conjuntoApostas) {
-			saida += aposta.toString() + "\n";
-		}
-
-		if (saida.equals("")) {
-			saida = "Nenhuma aposta cadastrada";
-		}
-
-		return saida;
+	public int getRateio() {
+		return valorRecolhido();
 	}
 
 	/**
@@ -115,6 +139,17 @@ public class Cenario {
 	}
 
 	/**
+	 * Colcocar o resltado da operaçao igual a variavel resultado
+	 * 
+	 * @param resultadoCenario
+	 *            representa Boolean que representa esta opeeração
+	 */
+	public void setResultadoCenario(boolean resultadoCenario) {
+		this.resultadoCenario = resultadoCenario;
+		this.estaTerminado = true;
+	}
+
+	/**
 	 * Retorna o valor a ser recolhido com o fim do cenário
 	 * 
 	 * @return retorna um int que representa a soma de todos as apostas perdedoras;
@@ -123,71 +158,37 @@ public class Cenario {
 		int valorRecolhidoCentavos = 0;
 
 		for (Aposta aposta : this.conjuntoApostas) {
-			
+
 			if ((this.resultadoCenario == true && aposta.getPrevisao() == false)
 					|| (this.resultadoCenario == false && aposta.getPrevisao() == true)) {
 
 				valorRecolhidoCentavos += aposta.getQtnAposta();
 			}
-			
 
 		}
 
 		return valorRecolhidoCentavos;
 	}
-	
+
 	/**
 	 * Retorna o valor total dos seguros a serem pagos no cenário.
+	 * 
 	 * @return este valor em centavos.
 	 */
 	public int valorSeguros() {
 		int valorSeguros = 0;
-		for(Aposta aposta : this.conjuntoApostas) {
+		for (Aposta aposta : this.conjuntoApostas) {
 			if ((this.resultadoCenario == true && aposta.getPrevisao() == false)
 					|| (this.resultadoCenario == false && aposta.getPrevisao() == true)) {
-				
+
 				valorSeguros += aposta.pagarSeguro();
-			
-			} 
+
+			}
 		}
-		
+
 		return valorSeguros;
 	}
 
-	/**
-	 * Alterar o tipo do seguro de uma aposta específica
-	 * @param numAposta
-	 * 		representa o índice da aposta
-	 * @param seguro
-	 * 		representa o novo seguro
-	 */
-	public void alterarSeguro(int numAposta, Seguro seguro) {
-		this.conjuntoApostas.get(numAposta).setSeguro(seguro);
-	}
-
-
-	/**
-	 * Finaliza o cenário setando o resultado dele como um bolean
-	 * 
-	 * @param resultadoCenario
-	 *            representa o bolean a ser passado com novo valor do cenário.
-	 * @throws Exception
-	 *             Lança uma exceção se o cenário já estiver terminado
-	 */
-	public void finalizarCenario(boolean resultadoCenario) throws Exception {
-		if (this.estaTerminado == true) {
-			throw new Exception("Erro ao fechar aposta: Cenario ja esta fechado");
-		}
-		this.resultadoCenario = resultadoCenario;
-		this.estaTerminado = true;
-	}
-
-	/**
-	 * Retorna o rateio total de um cenário.
-	 */
-	public int getRateio() { return valorRecolhido(); }
-	
-	
 	/**
 	 * Retorna um string que contem a representação do Cenário
 	 * 
@@ -211,9 +212,7 @@ public class Cenario {
 			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
 		}
 	}
-	
-	
-	
+
 	/**
 	 * Retorna um string contendo o estado atual do cenário.
 	 * 
@@ -227,6 +226,11 @@ public class Cenario {
 		} else {
 			return "Finalizado (n ocorreu)";
 		}
+	}
+
+	@Override
+	public int compareTo(Cenario o) {
+		return this.getDescricao().compareTo(o.getDescricao());
 	}
 
 }
